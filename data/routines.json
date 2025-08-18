@@ -1,0 +1,816 @@
+{
+  "andy": {
+    "Lunes": [
+      [
+        "Hip Thrust",
+        "Básico",
+        "Top 1×5–6 + Back-off 3×8",
+        {
+          "key": "Hip Thrust",
+          "pct": [
+            [
+              0.82,
+              0.85
+            ],
+            [
+              0.72,
+              0.75
+            ]
+          ]
+        },
+        "1–0–1–2 (2 s pico)",
+        "2–3 min",
+        "Top RIR1; Back-off RIR1–2"
+      ],
+      [
+        "Peso Rumano",
+        "Básico",
+        "4×8",
+        {
+          "key": "Peso Rumano",
+          "pct": [
+            [
+              0.65,
+              0.72
+            ]
+          ]
+        },
+        "3–1–1–0",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Búlgara (por mano)",
+        "Accesorio",
+        "3×10/lado",
+        {
+          "key": "Búlgara (por mano)",
+          "pct": [
+            [
+              0.6,
+              0.7
+            ]
+          ]
+        },
+        "2–1–1–1",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Abducción Máquina",
+        "Accesorio",
+        "3×12–15 (+ myo)",
+        {
+          "key": "Abducción Máquina",
+          "pct": [
+            [
+              0.65,
+              0.75
+            ]
+          ]
+        },
+        "1 s pico",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Pantorrilla de pie",
+        "Básico",
+        "5×8–10",
+        {
+          "key": "Pantorrilla de pie",
+          "pct": [
+            [
+              0.75,
+              0.85
+            ]
+          ]
+        },
+        "3–1–1–2",
+        "90 s",
+        "RIR1"
+      ]
+    ],
+    "Martes": [
+      [
+        "Dominadas / Jalón",
+        "Básico",
+        "4×6–8",
+        {
+          "auto": true
+        },
+        "2–1–1–0",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Remo (T/Pendlay)",
+        "Básico",
+        "4×8",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Jalón unilateral",
+        "Accesorio",
+        "3×10/lado",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Curl EZ + Tríceps cuerda",
+        "Superserie (antag.)",
+        "3×10 + 3×12",
+        {
+          "auto": true
+        },
+        "3–1–1–1",
+        "90 s al final",
+        "RIR0–1"
+      ],
+      [
+        "Face pull",
+        "Accesorio",
+        "3×15",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "Técnico"
+      ],
+      [
+        "Press inclinado + Laterales",
+        "Secundarios",
+        "2×10 + 2×12",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR2"
+      ]
+    ],
+    "Miércoles": [
+      [
+        "Sentadilla trasera alta",
+        "Básico",
+        "5×5",
+        {
+          "auto": true
+        },
+        "3–0–1–0",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Prensa 45°",
+        "Básico",
+        "4×8–10",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Zancadas caminando",
+        "Accesorio",
+        "3×12/lado",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Extensiones cuádriceps",
+        "Accesorio",
+        "3×12–15 + drop",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Pantorrilla sentado",
+        "Accesorio",
+        "4×12–15",
+        {
+          "key": "Pantorrilla de pie",
+          "pct": [
+            [
+              0.6,
+              0.7
+            ]
+          ]
+        },
+        "pausa 2 s",
+        "60–90 s",
+        "RIR0–1"
+      ]
+    ],
+    "Jueves": [
+      [
+        "Remo mancuerna apoyado",
+        "Básico",
+        "4×10/lado",
+        {
+          "auto": true
+        },
+        "2–1–1–1",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Jalón neutro",
+        "Básico",
+        "4×8–10",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Pullover polea",
+        "Accesorio",
+        "3×12",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Curl inclinado + Martillo + Press tríceps Z",
+        "Triserie mixta",
+        "3×10 + 3×12 + 3×10",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s entre vueltas",
+        "RIR0–1"
+      ],
+      [
+        "Fondos asistidos + Laterales cable",
+        "Secundarios",
+        "2×8–10 + 2×15",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR1–2"
+      ]
+    ],
+    "Viernes": [
+      [
+        "Hip Thrust",
+        "Básico",
+        "4×10 (TUT)",
+        {
+          "key": "Hip Thrust",
+          "pct": [
+            [
+              0.7,
+              0.75
+            ]
+          ]
+        },
+        "1–0–1–2 (2 s pico)",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Good Morning",
+        "Básico",
+        "3×8–10",
+        {
+          "auto": true
+        },
+        "3–0–1–0",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Pull-through",
+        "Accesorio",
+        "3×12–15",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Nordic/GHR",
+        "Básico",
+        "3×6–8",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Pantorrilla Donkey",
+        "Accesorio",
+        "4×10–12 (+ rest-pause)",
+        {
+          "key": "Pantorrilla de pie",
+          "pct": [
+            [
+              0.6,
+              0.7
+            ]
+          ]
+        },
+        "—",
+        "90 s",
+        "RIR0–1"
+      ]
+    ],
+    "Sábado": [
+      [
+        "Remo máquina convergente",
+        "Accesorio",
+        "3×12 (+ drop)",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR0–1"
+      ],
+      [
+        "Jalón supino estrecho",
+        "Básico",
+        "3×12",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Predicador + Tríceps cuerda",
+        "Superserie (antag.)",
+        "4×10 + 4×12",
+        {
+          "auto": true
+        },
+        "3–1–1–1",
+        "90 s al final",
+        "RIR0–1"
+      ],
+      [
+        "Curl cable barra recta",
+        "Accesorio",
+        "3×12–15 (myo)",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Tríceps tras nuca",
+        "Accesorio",
+        "3×12",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR0–1"
+      ]
+    ]
+  },
+  "fercho": {
+    "Lunes": [
+      [
+        "Hip Thrust",
+        "Básico",
+        "Top 1×5–6 + Back-off 3×8",
+        {
+          "key": "Hip Thrust",
+          "pct": [
+            [
+              0.82,
+              0.85
+            ],
+            [
+              0.72,
+              0.75
+            ]
+          ]
+        },
+        "1–0–1–2 (2 s pico)",
+        "2–3 min",
+        "Top RIR1; Back-off RIR1–2"
+      ],
+      [
+        "Peso Rumano",
+        "Básico",
+        "4×6–8",
+        {
+          "key": "Peso Rumano",
+          "pct": [
+            [
+              0.72,
+              0.78
+            ]
+          ]
+        },
+        "3–1–1–0",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Búlgara (por mano)",
+        "Accesorio",
+        "3×8–10/lado",
+        {
+          "key": "Búlgara (por mano)",
+          "pct": [
+            [
+              0.6,
+              0.7
+            ]
+          ]
+        },
+        "2–1–1–1",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Abducción Máquina",
+        "Accesorio",
+        "3×15 (myo)",
+        {
+          "key": "Abducción Máquina",
+          "pct": [
+            [
+              0.65,
+              0.75
+            ]
+          ]
+        },
+        "1 s pico",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Pantorrilla de pie",
+        "Básico",
+        "5×8–10",
+        {
+          "key": "Pantorrilla de pie",
+          "pct": [
+            [
+              0.75,
+              0.85
+            ]
+          ]
+        },
+        "3–1–1–2",
+        "90 s",
+        "RIR1"
+      ]
+    ],
+    "Martes": [
+      [
+        "Press inclinado",
+        "Básico",
+        "4×6–8",
+        {
+          "auto": true
+        },
+        "3–0–1–0",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Dominadas lastradas",
+        "Básico",
+        "4×5–8",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Remo barra (Pendlay/Yates)",
+        "Básico",
+        "4×8",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Fondos lastrados",
+        "Básico",
+        "3×8–10",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Curl EZ + Tríceps cuerda",
+        "Superserie (antag.)",
+        "3×10 + 3×12",
+        {
+          "auto": true
+        },
+        "3–1–1–1",
+        "90 s al final",
+        "RIR0–1"
+      ],
+      [
+        "Face pull",
+        "Accesorio",
+        "3×15",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "Técnico"
+      ]
+    ],
+    "Miércoles": [
+      [
+        "Sentadilla trasera",
+        "Básico",
+        "5×5",
+        {
+          "auto": true
+        },
+        "3–0–1–0",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Prensa 45° (bajos/estrechos)",
+        "Básico",
+        "4×8–10",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Sentadilla frontal",
+        "Básico",
+        "3×6–8",
+        {
+          "auto": true
+        },
+        "—",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Extensiones cuádriceps",
+        "Accesorio",
+        "3×12–15 + drop",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Pantorrilla sentado",
+        "Accesorio",
+        "4×12–15",
+        {
+          "key": "Pantorrilla de pie",
+          "pct": [
+            [
+              0.6,
+              0.7
+            ]
+          ]
+        },
+        "pausa 2 s",
+        "60–90 s",
+        "RIR0–1"
+      ]
+    ],
+    "Jueves": [
+      [
+        "Press banca plano",
+        "Básico",
+        "4×6–8",
+        {
+          "auto": true
+        },
+        "—",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Remo mancuerna apoyado",
+        "Básico",
+        "4×10/lado",
+        {
+          "auto": true
+        },
+        "2–1–1–1",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Jalón neutro",
+        "Básico",
+        "3×10–12",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1–2"
+      ],
+      [
+        "Press cerrado + Curl inclinado + Martillo",
+        "Triserie mixta",
+        "3×8–10 + 3×10 + 3×12",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s entre vueltas",
+        "RIR0–1"
+      ],
+      [
+        "Laterales cable",
+        "Accesorio",
+        "2×15",
+        {
+          "auto": true
+        },
+        "—",
+        "60–90 s",
+        "RIR1–2"
+      ]
+    ],
+    "Viernes": [
+      [
+        "Hip Thrust",
+        "Básico",
+        "4×10 (TUT)",
+        {
+          "key": "Hip Thrust",
+          "pct": [
+            [
+              0.7,
+              0.75
+            ]
+          ]
+        },
+        "1–0–1–2 (2 s pico)",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Good Morning",
+        "Básico",
+        "3×8–10",
+        {
+          "auto": true
+        },
+        "3–0–1–0",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Pull-through",
+        "Accesorio",
+        "3×12–15",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Curl femoral tumbado",
+        "Básico",
+        "3×10–12 + rest-pause",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR0–1"
+      ],
+      [
+        "Pantorrilla Donkey",
+        "Accesorio",
+        "4×10–12 (+ myo)",
+        {
+          "key": "Pantorrilla de pie",
+          "pct": [
+            [
+              0.6,
+              0.7
+            ]
+          ]
+        },
+        "—",
+        "90 s",
+        "RIR0–1"
+      ]
+    ],
+    "Sábado": [
+      [
+        "Press inclinado mancuernas",
+        "Básico",
+        "3×10–12 (+ drop)",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR0–1"
+      ],
+      [
+        "Remo máquina convergente",
+        "Accesorio",
+        "3×12 (pico 1 s)",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Cruce poleas alto-bajo",
+        "Accesorio",
+        "3×12–15 (TUT)",
+        {
+          "auto": true
+        },
+        "3–1–1–1",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Jalón supino",
+        "Básico",
+        "3×12",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Predicador + Tríceps Z",
+        "Superserie (antag.)",
+        "4×10 + 4×10",
+        {
+          "auto": true
+        },
+        "—",
+        "90 s al final",
+        "RIR0–1"
+      ]
+    ]
+  }
+}

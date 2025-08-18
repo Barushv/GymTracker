@@ -1,163 +1,98 @@
 <!doctype html>
-<html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Hypertrophy Tracker</title><meta name='theme-color' content='#0B0B0C' id='themeColor'>
-<link rel='manifest' href='app.webmanifest'><link rel='icon' href='icons/icon-192.png'>
-<style>
-:root{--bg:#0b0b0c;--card:#141416;--muted:#9aa0a6;--text:#e8eaed;--brand:#22c55e;--line:#25262a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
-.wrap{max-width:1100px;margin:0 auto;padding:16px}.row{display:grid;gap:12px}
-@media(min-width:900px){.row{grid-template-columns:1fr 1fr}}.card{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 2px 20px rgba(0,0,0,.25)}
-h1{font-size:clamp(22px,3vw,28px);margin:0 0 6px}h2{margin:0 0 8px;font-size:18px}label{font-size:12px;color:var(--muted)}
-select,textarea,input[type=text],input[type=number]{background:#0b0b0c;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}
-button{background:var(--brand);color:white;border:0;border-radius:10px;padding:8px 12px;font-weight:600;cursor:pointer}.ghost{background:#24242a}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:8px;border-top:1px solid var(--line);vertical-align:top}th{color:var(--muted);text-align:left}
-.tag{display:inline-block;padding:2px 8px;border-radius:999px;background:#202026;color:#cbd5e1;font-size:11px}.muted{color:var(--muted)}.kg{color:#a7f3d0}
-.toolbar{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:8px}@media(max-width:1100px){.toolbar{grid-template-columns:1fr 1fr 1fr}}
-.foot{color:#80868b;font-size:12px;margin-top:6px}.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:30}
-.modal.open{display:flex}.modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:780px;width:95%;padding:16px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.hr{border-top:1px solid var(--line);margin:8px 0}
-.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#202026;color:#cbd5e1;font-size:11px;margin-left:6px}
-</style></head>
-<body><div class='wrap'>
-<header class='row' style='grid-template-columns:2fr 1fr;align-items:end;gap:16px;margin-bottom:12px'>
-<div><h1>Hypertrophy Tracker <span class='pill'>v3</span></h1>
-<div class='muted'>Fercho & Novia • %1RM / RIR / TUT • Progresión S1–S4 • <b>Editable 1RM</b> • <b>Backup/Restore</b></div></div>
-<div class='toolbar'>
-<div><label>Persona</label><select id='person'><option value='fercho'>Fercho</option><option value='novia'>Novia</option></select></div>
-<div><label>Día</label><select id='day'></select></div>
-<div><label>Semana</label><select id='week'><option value='1'>Semana 1</option><option value='2'>Semana 2</option><option value='3'>Semana 3</option><option value='4'>Semana 4</option></select></div>
-<div><label>Tema</label><select id='theme'><option value='emerald'>Emerald</option><option value='teal'>Teal</option><option value='indigo'>Indigo</option><option value='rose'>Rose</option><option value='amber'>Amber</option></select></div>
-<div style='display:flex;gap:8px;align-items:end'><button id='btnExport'>Exportar CSV</button><button id='btnInstall' class='ghost' style='display:none'>Instalar</button></div>
-<div style='display:flex;gap:8px;align-items:end;justify-content:flex-end'><button id='btnSettings' class='ghost'>⚙️ Ajustes</button></div>
-</div></header>
-<section class='card' id='tableCard'><div style='overflow:auto'>
-<table id='planTable'><thead><tr>
-<th>Ejercicio</th><th>Tipo</th><th>Esquema</th><th>Carga objetivo</th><th>Tempo</th><th>Descanso</th><th>RIR</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th>
-</tr></thead><tbody></tbody></table></div>
-<div class='foot'>“Autoajuste” aparece en ejercicios sin 1RM precargado (usa RIR/tempo). Para ver kg, edita 1RM en ⚙️ Ajustes.</div></section>
-<section class='row'><div class='card'><h2>Cardio (oxidación de grasa)</h2><div id='cardioList'></div></div>
-<div class='card'><h2>Mini-déficit (sin afectar pierna)</h2><div id='deficitText' class='muted'></div>
-<ul class='muted' style='margin-left:18px;margin-top:6px'><li>Proteína: 1.8–2.2 g/kg/día</li><li>Carbohidratos altos en pierna; moderados en upper y domingo</li><li>Grasas ≥ 0.6 g/kg; monoinsaturadas</li><li>Hidratación: 30–40 ml/kg (+500–1000 ml con HIIT/escalera)</li></ul>
-<label style='margin-top:8px;display:block'>Notas</label><textarea id='notes' rows='4' placeholder='Apunta aquí ajustes de comida, sueño, recuperación…'></textarea>
-</div></section>
-<section class='card' style='margin-top:12px'><h2>Domingo activo (sin glúteo)</h2>
-<div class='muted'>LISS 35–45′ (caminadora pendiente o elíptica) + <b>core 8–12′</b> (Dead bug, Pallof press, plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div></section>
-<div class='modal' id='modal'><div class='box'><div style='display:flex;justify-content:space-between;align-items:center'>
-<h2 style='margin:0'>Ajustes</h2><button id='btnClose' class='ghost'>Cerrar</button></div><div class='hr'></div>
-<div class='grid2'><div><h3 style='margin:0 0 8px'>1RM por persona</h3><div class='muted'>Edita tus 1RM. Se guardan en el dispositivo. Afecta los rangos de “Carga objetivo”.</div>
-<div id='oneRmEditor' style='margin-top:8px'></div><div style='margin-top:8px;display:flex;gap:8px'>
-<button id='btnAdd1RM' class='ghost'>Agregar ejercicio 1RM</button><button id='btnReset1RM' class='ghost'>Restablecer a valores por defecto</button></div></div>
-<div><h3 style='margin:0 0 8px'>Respaldo</h3><div class='muted'>Descarga y carga un respaldo (.json) con 1RM, progresión y estado.</div>
-<div style='display:flex;gap:8px;margin-top:8px'><button id='btnBackup'>Descargar respaldo</button><input type='file' id='fileRestore' accept='.json' style='display:none'><button id='btnRestore' class='ghost'>Restaurar desde archivo</button></div>
-<div class='hr'></div><div class='muted'>Origen: almacenamiento es por sitio. Si abres otro dominio o carpeta, no verá tus datos. Evita modo incógnito si quieres persistencia.</div></div>
-</div></div></div>
-<footer class='muted' style='margin-top:8px'>PWA v3: editable 1RM + backup/restore. Funciona offline tras la primera carga.</footer>
-</div>
-<script>
-const THEMES={emerald:{bg:'#0b0b0c',card:'#141416',text:'#e8eaed',muted:'#9aa0a6',brand:'#22c55e',line:'#25262a',themeColor:'#0B0B0C'},
-teal:{bg:'#0b1111',card:'#101617',text:'#e6fffb',muted:'#8bd5ce',brand:'#14b8a6',line:'#173336',themeColor:'#0b1111'},
-indigo:{bg:'#0f1020',card:'#16172b',text:'#e4e7ff',muted:'#a5adcb',brand:'#6366f1',line:'#2a2c44',themeColor:'#0f1020'},
-rose:{bg:'#140c10',card:'#1c1317',text:'#ffe4e6',muted:'#f5b2be',brand:'#f43f5e',line:'#3a232b',themeColor:'#140c10'},
-amber:{bg:'#120f09',card:'#1b160f',text:'#fff7ed',muted:'#f3d7a6',brand:'#f59e0b',line:'#3a2f1e',themeColor:'#120f09'}};
-function applyTheme(name){const t=THEMES[name]||THEMES.emerald;const r=document.documentElement.style;
-['bg','card','text','muted','brand','line'].forEach(k=>r.setProperty('--'+k,t[k]));document.getElementById('themeColor').setAttribute('content',t.themeColor);localStorage.setItem('pwa-theme',name);}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hypertrophy Tracker</title>
+  <meta name="theme-color" content="#0B0B0C" id="themeColor">
+  <link rel="manifest" href="app.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="row header">
+      <div>
+        <h1>Hypertrophy Tracker <span class="pill">v4</span></h1>
+        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • Progresión S1–S4 • Editable 1RM • Backup/Restore</div>
+      </div>
+      <div class="toolbar">
+        <div><label>Persona</label><select id="person"><option value="fercho">Fercho</option><option value="andy">Andy</option></select></div>
+        <div><label>Día</label><select id="day"></select></div>
+        <div><label>Semana</label><select id="week"><option value="1">Semana 1</option><option value="2">Semana 2</option><option value="3">Semana 3</option><option value="4">Semana 4</option></select></div>
+        <div><label>Tema</label><select id="theme"><option value="emerald">Emerald</option><option value="teal">Teal</option><option value="indigo">Indigo</option><option value="rose">Rose</option><option value="amber">Amber</option></select></div>
+        <div class="toolbar-buttons">
+          <button id="btnExport">Exportar CSV</button>
+          <button id="btnInstall" class="ghost" style="display:none">Instalar</button>
+          <button id="btnSettings" class="ghost">⚙️ Ajustes</button>
+          <button id="btnView" class="ghost">Vista: Tabla</button>
+        </div>
+      </div>
+    </header>
 
-const DEFAULT_1RM={"novia": {"Hip Thrust": 172.6667, "Peso Rumano": 28.0, "Búlgara (por mano)": 21.0, "Abducción Máquina": 112.0, "Pantorrilla de pie": 81.2}, "fercho": {"Hip Thrust": 216.0, "Peso Rumano": 37.8, "Búlgara (por mano)": 28.0, "Abducción Máquina": 148.4, "Pantorrilla de pie": 120.4}};
-const ROUTINES={"novia": {"Lunes": [["Hip Thrust", "Básico", "Top 1×5–6 + Back-off 3×8", {"key": "Hip Thrust", "pct": [[0.82, 0.85], [0.72, 0.75]]}, "1–0–1–2 (2 s pico)", "2–3 min", "Top RIR1; Back-off RIR1–2"], ["Peso Rumano", "Básico", "4×8", {"key": "Peso Rumano", "pct": [[0.65, 0.72]]}, "3–1–1–0", "2 min", "RIR1"], ["Búlgara (por mano)", "Accesorio", "3×10/lado", {"key": "Búlgara (por mano)", "pct": [[0.6, 0.7]]}, "2–1–1–1", "90 s", "RIR1"], ["Abducción Máquina", "Accesorio", "3×12–15 (+ myo)", {"key": "Abducción Máquina", "pct": [[0.65, 0.75]]}, "1 s pico", "60–90 s", "RIR0–1"], ["Pantorrilla de pie", "Básico", "5×8–10", {"key": "Pantorrilla de pie", "pct": [[0.75, 0.85]]}, "3–1–1–2", "90 s", "RIR1"]], "Martes": [["Dominadas / Jalón", "Básico", "4×6–8", {"auto": true}, "2–1–1–0", "2–3 min", "RIR1–2"], ["Remo (T/Pendlay)", "Básico", "4×8", {"auto": true}, "—", "2 min", "RIR1–2"], ["Jalón unilateral", "Accesorio", "3×10/lado", {"auto": true}, "—", "90 s", "RIR1"], ["Curl EZ + Tríceps cuerda", "Superserie (antag.)", "3×10 + 3×12", {"auto": true}, "3–1–1–1", "90 s al final", "RIR0–1"], ["Face pull", "Accesorio", "3×15", {"auto": true}, "—", "60–90 s", "Técnico"], ["Press inclinado + Laterales", "Secundarios", "2×10 + 2×12", {"auto": true}, "—", "60–90 s", "RIR2"]], "Miércoles": [["Sentadilla trasera alta", "Básico", "5×5", {"auto": true}, "3–0–1–0", "2–3 min", "RIR1–2"], ["Prensa 45°", "Básico", "4×8–10", {"auto": true}, "—", "2 min", "RIR1"], ["Zancadas caminando", "Accesorio", "3×12/lado", {"auto": true}, "—", "90 s", "RIR1"], ["Extensiones cuádriceps", "Accesorio", "3×12–15 + drop", {"auto": true}, "—", "60–90 s", "RIR0–1"], ["Pantorrilla sentado", "Accesorio", "4×12–15", {"key": "Pantorrilla de pie", "pct": [[0.6, 0.7]]}, "pausa 2 s", "60–90 s", "RIR0–1"]], "Jueves": [["Remo mancuerna apoyado", "Básico", "4×10/lado", {"auto": true}, "2–1–1–1", "2 min", "RIR1"], ["Jalón neutro", "Básico", "4×8–10", {"auto": true}, "—", "2 min", "RIR1–2"], ["Pullover polea", "Accesorio", "3×12", {"auto": true}, "—", "90 s", "RIR1"], ["Curl inclinado + Martillo + Press tríceps Z", "Triserie mixta", "3×10 + 3×12 + 3×10", {"auto": true}, "—", "90 s entre vueltas", "RIR0–1"], ["Fondos asistidos + Laterales cable", "Secundarios", "2×8–10 + 2×15", {"auto": true}, "—", "60–90 s", "RIR1–2"]], "Viernes": [["Hip Thrust", "Básico", "4×10 (TUT)", {"key": "Hip Thrust", "pct": [[0.7, 0.75]]}, "1–0–1–2 (2 s pico)", "2 min", "RIR1"], ["Good Morning", "Básico", "3×8–10", {"auto": true}, "3–0–1–0", "2 min", "RIR1–2"], ["Pull-through", "Accesorio", "3×12–15", {"auto": true}, "—", "90 s", "RIR1"], ["Nordic/GHR", "Básico", "3×6–8", {"auto": true}, "—", "2 min", "RIR1–2"], ["Pantorrilla Donkey", "Accesorio", "4×10–12 (+ rest-pause)", {"key": "Pantorrilla de pie", "pct": [[0.6, 0.7]]}, "—", "90 s", "RIR0–1"]], "Sábado": [["Remo máquina convergente", "Accesorio", "3×12 (+ drop)", {"auto": true}, "—", "90 s", "RIR0–1"], ["Jalón supino estrecho", "Básico", "3×12", {"auto": true}, "—", "90 s", "RIR1"], ["Predicador + Tríceps cuerda", "Superserie (antag.)", "4×10 + 4×12", {"auto": true}, "3–1–1–1", "90 s al final", "RIR0–1"], ["Curl cable barra recta", "Accesorio", "3×12–15 (myo)", {"auto": true}, "—", "60–90 s", "RIR0–1"], ["Tríceps tras nuca", "Accesorio", "3×12", {"auto": true}, "—", "60–90 s", "RIR0–1"]]}, "fercho": {"Lunes": [["Hip Thrust", "Básico", "Top 1×5–6 + Back-off 3×8", {"key": "Hip Thrust", "pct": [[0.82, 0.85], [0.72, 0.75]]}, "1–0–1–2 (2 s pico)", "2–3 min", "Top RIR1; Back-off RIR1–2"], ["Peso Rumano", "Básico", "4×6–8", {"key": "Peso Rumano", "pct": [[0.72, 0.78]]}, "3–1–1–0", "2 min", "RIR1"], ["Búlgara (por mano)", "Accesorio", "3×8–10/lado", {"key": "Búlgara (por mano)", "pct": [[0.6, 0.7]]}, "2–1–1–1", "90 s", "RIR1"], ["Abducción Máquina", "Accesorio", "3×15 (myo)", {"key": "Abducción Máquina", "pct": [[0.65, 0.75]]}, "1 s pico", "60–90 s", "RIR0–1"], ["Pantorrilla de pie", "Básico", "5×8–10", {"key": "Pantorrilla de pie", "pct": [[0.75, 0.85]]}, "3–1–1–2", "90 s", "RIR1"]], "Martes": [["Press inclinado", "Básico", "4×6–8", {"auto": true}, "3–0–1–0", "2–3 min", "RIR1–2"], ["Dominadas lastradas", "Básico", "4×5–8", {"auto": true}, "—", "2 min", "RIR1"], ["Remo barra (Pendlay/Yates)", "Básico", "4×8", {"auto": true}, "—", "2 min", "RIR1–2"], ["Fondos lastrados", "Básico", "3×8–10", {"auto": true}, "—", "2 min", "RIR1"], ["Curl EZ + Tríceps cuerda", "Superserie (antag.)", "3×10 + 3×12", {"auto": true}, "3–1–1–1", "90 s al final", "RIR0–1"], ["Face pull", "Accesorio", "3×15", {"auto": true}, "—", "60–90 s", "Técnico"]], "Miércoles": [["Sentadilla trasera", "Básico", "5×5", {"auto": true}, "3–0–1–0", "2–3 min", "RIR1–2"], ["Prensa 45° (bajos/estrechos)", "Básico", "4×8–10", {"auto": true}, "—", "2 min", "RIR1"], ["Sentadilla frontal", "Básico", "3×6–8", {"auto": true}, "—", "2 min", "RIR1–2"], ["Extensiones cuádriceps", "Accesorio", "3×12–15 + drop", {"auto": true}, "—", "60–90 s", "RIR0–1"], ["Pantorrilla sentado", "Accesorio", "4×12–15", {"key": "Pantorrilla de pie", "pct": [[0.6, 0.7]]}, "pausa 2 s", "60–90 s", "RIR0–1"]], "Jueves": [["Press banca plano", "Básico", "4×6–8", {"auto": true}, "—", "2–3 min", "RIR1–2"], ["Remo mancuerna apoyado", "Básico", "4×10/lado", {"auto": true}, "2–1–1–1", "2 min", "RIR1"], ["Jalón neutro", "Básico", "3×10–12", {"auto": true}, "—", "90 s", "RIR1–2"], ["Press cerrado + Curl inclinado + Martillo", "Triserie mixta", "3×8–10 + 3×10 + 3×12", {"auto": true}, "—", "90 s entre vueltas", "RIR0–1"], ["Laterales cable", "Accesorio", "2×15", {"auto": true}, "—", "60–90 s", "RIR1–2"]], "Viernes": [["Hip Thrust", "Básico", "4×10 (TUT)", {"key": "Hip Thrust", "pct": [[0.7, 0.75]]}, "1–0–1–2 (2 s pico)", "2 min", "RIR1"], ["Good Morning", "Básico", "3×8–10", {"auto": true}, "3–0–1–0", "2 min", "RIR1–2"], ["Pull-through", "Accesorio", "3×12–15", {"auto": true}, "—", "90 s", "RIR1"], ["Curl femoral tumbado", "Básico", "3×10–12 + rest-pause", {"auto": true}, "—", "90 s", "RIR0–1"], ["Pantorrilla Donkey", "Accesorio", "4×10–12 (+ myo)", {"key": "Pantorrilla de pie", "pct": [[0.6, 0.7]]}, "—", "90 s", "RIR0–1"]], "Sábado": [["Press inclinado mancuernas", "Básico", "3×10–12 (+ drop)", {"auto": true}, "—", "90 s", "RIR0–1"], ["Remo máquina convergente", "Accesorio", "3×12 (pico 1 s)", {"auto": true}, "—", "90 s", "RIR1"], ["Cruce poleas alto-bajo", "Accesorio", "3×12–15 (TUT)", {"auto": true}, "3–1–1–1", "60–90 s", "RIR0–1"], ["Jalón supino", "Básico", "3×12", {"auto": true}, "—", "90 s", "RIR1"], ["Predicador + Tríceps Z", "Superserie (antag.)", "4×10 + 4×10", {"auto": true}, "—", "90 s al final", "RIR0–1"]]}};
+    <section class="card" id="tableCard">
+      <div id="planContainer"></div>
+      <div class="foot">“Autoajuste” aparece en ejercicios sin 1RM precargado (usa RIR/tempo). Para ver kg, edita 1RM en ⚙️ Ajustes.</div>
+    </section>
 
-const DAYS=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-const CARDIO=[["Lunes","Elíptica LISS Zona 2","20–25 min","RPE 5–6; 60–70% FCmáx"],
-["Martes","Caminadora HIIT","8–10× (30–40″ fuerte / 60–90″ suave)","RPE 8–9 tramos duros"],
-["Miércoles","Elíptica LISS (opc.)","15–20 min","Sólo si no afecta quads"],
-["Jueves","Caminadora LISS pendiente","25–35 min","6–8% / 4.5–5.5 km/h"],
-["Viernes","Elíptica LISS","15–20 min","Recuperación"],
-["Sábado","Escalera o elíptica LISS","20–30 min","RPE 5–6"],
-["Domingo","LISS 35–45′ + Core 8–12′","—","sin glúteo; dead bug, pallof, plancha"]];
+    <section class="row">
+      <div class="card">
+        <h2>Cardio (oxidación de grasa)</h2>
+        <div id="cardioList"></div>
+      </div>
+      <div class="card">
+        <h2>Mini-déficit (sin afectar pierna)</h2>
+        <div id="deficitText" class="muted"></div>
+        <ul class="muted tips">
+          <li>Proteína: 1.8–2.2 g/kg/día</li>
+          <li>Carbohidratos altos en pierna; moderados en upper y domingo</li>
+          <li>Grasas ≥ 0.6 g/kg; monoinsaturadas</li>
+          <li>Hidratación: 30–40 ml/kg (+500–1000 ml con HIIT/escalera)</li>
+        </ul>
+        <label style="margin-top:8px;display:block">Notas</label>
+        <textarea id="notes" rows="4" placeholder="Apunta aquí ajustes de comida, sueño, recuperación…"></textarea>
+      </div>
+    </section>
 
-const $=id=>document.getElementById(id);
-const LS={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch{return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}}};
+    <section class="card" style="margin-top:12px">
+      <h2>Domingo activo (sin glúteo)</h2>
+      <div class="muted">LISS 35–45′ (caminadora pendiente o elíptica) + <b>core 8–12′</b> (Dead bug, Pallof press, plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
+    </section>
 
-let state=LS.get("pwa-state",{person:"fercho",day:"Lunes",week:1,notes:""});
-let progress=LS.get("pwa-progress",{});
-let theme=localStorage.getItem('pwa-theme')||'emerald';
-let ONE_RM=LS.get("pwa-1rm",DEFAULT_1RM);
+    <div class="modal" id="modal">
+      <div class="box">
+        <div class="modal-head">
+          <h2>Ajustes</h2>
+          <button id="btnClose" class="ghost">Cerrar</button>
+        </div>
+        <div class="hr"></div>
+        <div class="grid2">
+          <div>
+            <h3>1RM por persona</h3>
+            <div class="help">Edita tus 1RM. Se guardan en el dispositivo. Afecta los rangos de “Carga objetivo”.</div>
+            <div id="oneRmEditor" class="mt8"></div>
+            <div class="row-actions">
+              <button id="btnAdd1RM" class="ghost">Agregar ejercicio 1RM</button>
+              <button id="btnReset1RM" class="ghost">Restablecer a valores por defecto</button>
+            </div>
+          </div>
+          <div>
+            <h3>Respaldo</h3>
+            <div class="help">Descarga y carga un respaldo (.json) con 1RM, progresión y estado.</div>
+            <div class="row-actions">
+              <button id="btnBackup">Descargar respaldo</button>
+              <input type="file" id="fileRestore" accept=".json" style="display:none">
+              <button id="btnRestore" class="ghost">Restaurar desde archivo</button>
+            </div>
+            <div class="hr"></div>
+            <div class="help">Migración automática: si existían datos guardados bajo “novia”, se trasladan a “andy”.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-function saveState(){LS.set("pwa-state",state)} function saveProgress(){LS.set("pwa-progress",progress)} function saveOneRM(){LS.set("pwa-1rm",ONE_RM)}
-
-function initUI(){
- applyTheme(theme); $("theme").value=theme; $("theme").onchange=e=>{theme=e.target.value;applyTheme(theme)};
- $("person").value=state.person; $("week").value=String(state.week); $("day").innerHTML=DAYS.map(d=>`<option ${d===state.day?'selected':''} value="${d}">${d}</option>`).join("");
- $("person").onchange=e=>{state.person=e.target.value;saveState();render()}; $("day").onchange=e=>{state.day=e.target.value;saveState();renderTable()};
- $("week").onchange=e=>{state.week=Number(e.target.value);saveState()}; $("btnExport").onclick=exportCSV;
- $("notes").value=state.notes||""; $("notes").oninput=e=>{state.notes=e.target.value;saveState()};
- $("btnSettings").onclick=openSettings; $("btnClose").onclick=()=>{$('modal').classList.remove('open')};
- $("btnAdd1RM").onclick=()=>{const who=prompt('¿Para quién? (fercho/novia)','fercho'); if(!who||!ONE_RM[who])return;
-   const name=prompt('Nombre exacto del ejercicio (igual a la tabla):','Hip Thrust'); if(!name)return;
-   const val=parseFloat(prompt('1RM en kg:','100')); if(!isFinite(val))return; ONE_RM[who][name]=val; saveOneRM(); renderTable(); renderOneRMEditor();};
- $("btnReset1RM").onclick=()=>{ if(confirm('¿Restablecer 1RM a los valores por defecto?')){ ONE_RM=JSON.parse(JSON.stringify(DEFAULT_1RM)); saveOneRM(); renderTable(); renderOneRMEditor(); } };
- $("btnBackup").onclick=doBackup; $("btnRestore").onclick=()=>{$("fileRestore").click()}; $("fileRestore").addEventListener('change',doRestore);
- render(); setupInstallPrompt();
-}
-
-function openSettings(){renderOneRMEditor();$('modal').classList.add('open')}
-function renderOneRMEditor(){
- const root=$('oneRmEditor'); root.innerHTML='';
- ['fercho','novia'].forEach(person=>{ const block=document.createElement('div'); block.innerHTML=`<h4 style="margin:8px 0">${person.toUpperCase()}</h4>`;
-   const list=document.createElement('div'); list.className='grid3';
-   Object.keys(ONE_RM[person]).sort().forEach(k=>{ const wrap=document.createElement('div');
-     wrap.innerHTML=`<label>${k}</label><input type="number" step="0.5" value="${ONE_RM[person][k]}" data-person="${person}" data-ex="${k}">`; list.appendChild(wrap);});
-   block.appendChild(list); root.appendChild(block);});
- root.querySelectorAll('input[type=number]').forEach(inp=>{ inp.addEventListener('change',e=>{ const p=e.target.getAttribute('data-person'); const ex=e.target.getAttribute('data-ex');
-   const val=parseFloat(e.target.value); if(isFinite(val)){ ONE_RM[p][ex]=val; saveOneRM(); renderTable(); } });});
-}
-
-function ROUND05(x){return Math.round(x*2)/2}
-function kgRange(person, load){ if(!load||load.auto) return "Autoajuste"; const rm=ONE_RM[person]?.[load.key]; if(!rm) return "Autoajuste";
- return load.pct.map(([lo,hi],i)=>{const loKg=ROUND05(rm*lo), hiKg=ROUND05(rm*hi); return (i===0?"":"(top), ")+`${loKg}–${hiKg} kg`;}).join(" ");}
-
-function render(){
- renderTable(); renderCardio();
- $('deficitText').textContent = state.person==='fercho' ? '−300 a −400 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie'
-                                                      : '−200 a −300 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie';
-}
-
-function renderTable(){
- const plan=ROUTINES[state.person][state.day]; const tb=$('planTable').querySelector('tbody'); tb.innerHTML='';
- plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{
-   const p=(progress[state.person]?.[name])||{}; const tr=document.createElement('tr');
-   tr.innerHTML=`<td><b>${name}</b></td><td><span class='tag'>${type}</span></td><td>${scheme}</td><td class='kg'>${kgRange(state.person,load)}</td>
-   <td>${tempo||'—'}</td><td>${rest||'—'}</td><td>${rir||'—'}</td>
-   ${[1,2,3,4].map(wk=>`<td><input data-ex='${name}' data-wk='S${wk}' value='${p['S'+wk]||""}' placeholder='kg/nota' style='width:95px'></td>`).join("")}`;
-   tb.appendChild(tr);
- });
- tb.querySelectorAll('input').forEach(inp=>{ inp.addEventListener('input',ev=>{ const ex=ev.target.dataset.ex, wk=ev.target.dataset.wk;
-   progress[state.person]=progress[state.person]||{}; progress[state.person][ex]=progress[state.person][ex]||{}; progress[state.person][ex][wk]=ev.target.value; saveProgress(); });});
-}
-
-function renderCardio(){ const root=$('cardioList');
- root.innerHTML = CARDIO.map(([d,mod,dur,nota])=>`<div style="display:flex;gap:10px;border-top:1px solid var(--line);padding:6px 0">
- <div style="width:90px"><b>${d}</b></div><div style="flex:1">${mod}</div><div style="width:150px" class="muted">${dur}</div><div style="width:240px" class="muted">${nota}</div></div>`).join("");
-}
-
-function exportCSV(){ const plan=ROUTINES[state.person][state.day]; const rows=[];
- rows.push(['Persona',state.person]); rows.push(['Día',state.day]); rows.push(['Semana',state.week]); rows.push([]);
- rows.push(['Ejercicio','Tipo','Esquema','Carga objetivo','Tempo','Descanso','RIR','S1','S2','S3','S4']);
- plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{ const p=(progress[state.person]?.[name])||{};
-   rows.push([name,type,scheme,kgRange(state.person,load),tempo||'',rest||'',rir||'',p.S1||'',p.S2||'',p.S3||'',p.S4||'']); });
- const csv=rows.map(r=>r.map(x=>`"${String(x).replaceAll('"','""')}"`).join(",")).join("\n");
- const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"}); const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=`rutina_${state.person}_${state.day}.csv`; a.click(); URL.revokeObjectURL(url);
-}
-
-function doBackup(){ const data={version:3,state,progress,oneRM:ONE_RM,theme}; const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='hypertrophy_backup.json'; a.click(); URL.revokeObjectURL(url); }
-function doRestore(evt){ const file=evt.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=()=>{ try{
-   const data=JSON.parse(reader.result); if(data.state) state=data.state; if(data.progress) progress=data.progress; if(data.oneRM) ONE_RM=data.oneRM;
-   if(data.theme){ theme=data.theme; applyTheme(theme); $('theme').value=theme; } saveState(); saveProgress(); localStorage.setItem('pwa-1rm', JSON.stringify(ONE_RM));
-   render(); $('modal').classList.remove('open'); alert('Respaldo restaurado.'); } catch(e){ alert('Archivo inválido.'); } }; reader.readAsText(file); }
-
-let deferredPrompt; function setupInstallPrompt(){ window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredPrompt=e;
-  const btn=$('btnInstall'); btn.style.display='inline-block'; btn.addEventListener('click', async ()=>{ btn.disabled=true; if(deferredPrompt){deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null;} btn.disabled=false; btn.style.display='none'; }); }); }
-
-if('serviceWorker' in navigator){ window.addEventListener('load', ()=>{ navigator.serviceWorker.register('./sw.js').catch(console.error); }); }
-initUI();
-</script></body></html>
+    <footer class="muted foot-bottom">PWA v4: estructura separada, responsive real, “Andy” y migración de datos. Offline tras la primera carga.</footer>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

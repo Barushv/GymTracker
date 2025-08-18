@@ -1,12 +1,12 @@
 {
   "name": "Hypertrophy Tracker",
-  "short_name": "HT",
+  "short_name": "HT A&F",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
   "background_color": "#0b0b0c",
   "theme_color": "#0b0b0c",
-  "description": "Rutinas Fercho & Novia con %1RM, RIR, TUT, progresión S1–S4 + cardio y mini-déficit. Offline. Editable 1RM y respaldo.",
+  "description": "Rutinas Fercho & Andy con %1RM, RIR, TUT y progresión S1–S4. PWA offline con edición de 1RM, backup y CSV.",
   "icons": [
     {
       "src": "icons/icon-192.png",
