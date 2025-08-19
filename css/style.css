@@ -55,7 +55,7 @@ th{color:var(--muted);text-align:left}
 @media(min-width:901px){.cards{display:none}}
 @media(max-width:900px){.table-wrapper{display:none}}
 
-/* Modal (mínimo) */
+/* Modal */
 .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.4);z-index:1000}
 .modal.open{display:grid}
 .modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:860px;width:95%;padding:16px}

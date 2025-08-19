@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,18 +10,34 @@
   <link rel="icon" href="icons/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <div class="wrap">
     <header class="row header">
       <div>
-        <h1>Hypertrophy Tracker <span class="pill">v4.2</span></h1>
-        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • Progresión S1–S4 • Editable 1RM • Backup/Restore • Update prompt</div>
+        <h1>Hypertrophy Trackers <span class="pill">v4.2</span></h1>
+        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • Progresión S1–S4 • Editable 1RM • Backup/Restore • Update
+          prompt</div>
       </div>
       <div class="toolbar">
-        <div><label>Persona</label><select id="person"><option value="fercho">Fercho</option><option value="andy">Andy</option></select></div>
+        <div><label>Persona</label><select id="person">
+            <option value="fercho">Fercho</option>
+            <option value="andy">Andy</option>
+          </select></div>
         <div><label>Día</label><select id="day"></select></div>
-        <div><label>Semana</label><select id="week"><option value="1">Semana 1</option><option value="2">Semana 2</option><option value="3">Semana 3</option><option value="4">Semana 4</option></select></div>
-        <div><label>Tema</label><select id="theme"><option value="emerald">Emerald</option><option value="teal">Teal</option><option value="indigo">Indigo</option><option value="rose">Rose</option><option value="amber">Amber</option></select></div>
+        <div><label>Semana</label><select id="week">
+            <option value="1">Semana 1</option>
+            <option value="2">Semana 2</option>
+            <option value="3">Semana 3</option>
+            <option value="4">Semana 4</option>
+          </select></div>
+        <div><label>Tema</label><select id="theme">
+            <option value="emerald">Emerald</option>
+            <option value="teal">Teal</option>
+            <option value="indigo">Indigo</option>
+            <option value="rose">Rose</option>
+            <option value="amber">Amber</option>
+          </select></div>
         <div class="toolbar-buttons">
           <button id="btnExport">Exportar CSV</button>
           <button id="btnInstall" class="ghost" style="display:none">Instalar</button>
@@ -32,7 +49,8 @@
 
     <section class="card" id="tableCard">
       <div id="planContainer"></div>
-      <div class="foot">“Autoajuste” aparece en ejercicios sin 1RM precargado (usa RIR/tempo). Para ver kg, edita 1RM en ⚙️ Ajustes.</div>
+      <div class="foot">“Autoajuste” aparece en ejercicios sin 1RM precargado (usa RIR/tempo). Para ver kg, edita 1RM en
+        ⚙️ Ajustes.</div>
     </section>
 
     <section class="row">
@@ -56,18 +74,17 @@
 
     <section class="card" style="margin-top:12px">
       <h2>Domingo activo (sin glúteo)</h2>
-      <div class="muted">LISS 35–45′ (caminadora pendiente o elíptica) + <b>core 8–12′</b> (Dead bug, Pallof press, plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
+      <div class="muted">LISS 35–45′ (caminadora pendiente o elíptica) + <b>core 8–12′</b> (Dead bug, Pallof press,
+        plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
     </section>
   </div>
 
-  <!-- Snackbar de actualización -->
   <div id="updateBar" class="update-bar" hidden>
     <span>Nueva versión disponible</span>
     <button id="btnRefresh">Actualizar</button>
     <button id="btnDismiss" class="ghost">Luego</button>
   </div>
 
-  <!-- Modal Ajustes -->
   <div class="modal" id="modal">
     <div class="box">
       <div class="modal-head">
@@ -100,8 +117,8 @@
     </div>
   </div>
 
-  <footer class="muted foot-bottom">PWA v4.2: update prompt + auto-recarga al aceptar. Offline tras la primera carga.</footer>
-
+  <footer class="muted foot-bottom">PWA v4.2 r4: prompt estable.</footer>
   <script type="module" src="js/app.js"></script>
 </body>
+
 </html>
