@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,47 +9,29 @@
   <link rel="icon" href="icons/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
   <div class="wrap">
     <header class="row header">
       <div>
-        <h1>Hypertrophy Trackers <span class="pill">v4.2</span></h1>
-        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • Progresión S1–S4 • Editable 1RM • Backup/Restore • Update
-          prompt</div>
+        <h1>Hypertrophy Tracker <span class="pill">v4.2</span></h1>
+        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • S1–S4 • 1RM editable • Backup/Restore</div>
       </div>
       <div class="toolbar">
-        <div><label>Persona</label><select id="person">
-            <option value="fercho">Fercho</option>
-            <option value="andy">Andy</option>
-          </select></div>
+        <div><label>Persona</label><select id="person"><option value="fercho">Fercho</option><option value="andy">Andy</option></select></div>
         <div><label>Día</label><select id="day"></select></div>
-        <div><label>Semana</label><select id="week">
-            <option value="1">Semana 1</option>
-            <option value="2">Semana 2</option>
-            <option value="3">Semana 3</option>
-            <option value="4">Semana 4</option>
-          </select></div>
-        <div><label>Tema</label><select id="theme">
-            <option value="emerald">Emerald</option>
-            <option value="teal">Teal</option>
-            <option value="indigo">Indigo</option>
-            <option value="rose">Rose</option>
-            <option value="amber">Amber</option>
-          </select></div>
+        <div><label>Semana</label><select id="week"><option value="1">Semana 1</option><option value="2">Semana 2</option><option value="3">Semana 3</option><option value="4">Semana 4</option></select></div>
+        <div><label>Tema</label><select id="theme"><option value="emerald">Emerald</option><option value="teal">Teal</option><option value="indigo">Indigo</option><option value="rose">Rose</option><option value="amber">Amber</option></select></div>
         <div class="toolbar-buttons">
           <button id="btnExport">Exportar CSV</button>
-          <button id="btnInstall" class="ghost" style="display:none">Instalar</button>
           <button id="btnSettings" class="ghost">⚙️ Ajustes</button>
           <button id="btnView" class="ghost">Vista: Tabla</button>
         </div>
       </div>
     </header>
 
-    <section class="card" id="tableCard">
+    <section class="card">
       <div id="planContainer"></div>
-      <div class="foot">“Autoajuste” aparece en ejercicios sin 1RM precargado (usa RIR/tempo). Para ver kg, edita 1RM en
-        ⚙️ Ajustes.</div>
+      <div class="foot">“Autoajuste” aparece en ejercicios sin 1RM precargado (usa RIR/tempo). Para ver kg, edita 1RM en ⚙️ Ajustes.</div>
     </section>
 
     <section class="row">
@@ -74,17 +55,9 @@
 
     <section class="card" style="margin-top:12px">
       <h2>Domingo activo (sin glúteo)</h2>
-      <div class="muted">LISS 35–45′ (caminadora pendiente o elíptica) + <b>core 8–12′</b> (Dead bug, Pallof press,
-        plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
+      <div class="muted">LISS 35–45′ + <b>core 8–12′</b> (Dead bug, Pallof, plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
     </section>
-  </div>
-
-  <div id="updateBar" class="update-bar" hidden>
-    <span>Nueva versión disponible</span>
-    <button id="btnRefresh">Actualizar</button>
-    <button id="btnDismiss" class="ghost">Luego</button>
-  </div>
-
+  
   <div class="modal" id="modal">
     <div class="box">
       <div class="modal-head">
@@ -95,7 +68,7 @@
       <div class="grid2">
         <div>
           <h3>1RM por persona</h3>
-          <div class="help">Edita tus 1RM. Se guardan en el dispositivo. Afecta los rangos de “Carga objetivo”.</div>
+          <div class="help">Edita tus 1RM (guardado en este dispositivo).</div>
           <div id="oneRmEditor" class="mt8"></div>
           <div class="row-actions">
             <button id="btnAdd1RM" class="ghost">Agregar ejercicio 1RM</button>
@@ -104,21 +77,21 @@
         </div>
         <div>
           <h3>Respaldo</h3>
-          <div class="help">Descarga y carga un respaldo (.json) con 1RM, progresión y estado.</div>
+          <div class="help">Descarga/carga respaldo (.json) con 1RM, progresión y estado.</div>
           <div class="row-actions">
             <button id="btnBackup">Descargar respaldo</button>
             <input type="file" id="fileRestore" accept=".json" style="display:none">
             <button id="btnRestore" class="ghost">Restaurar desde archivo</button>
           </div>
           <div class="hr"></div>
-          <div class="help">Migración automática: si existían datos guardados bajo “novia”, se trasladan a “andy”.</div>
+          <div class="help">Migración automática: si existía “novia”, se traslada a “andy”.</div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <footer class="muted foot-bottom">PWA v4.2 r4: prompt estable.</footer>
+  <footer class="muted foot-bottom">PWA v4.2 r6 (sin actualización in‑app)</footer>
   <script type="module" src="js/app.js"></script>
 </body>
-
 </html>

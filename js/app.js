@@ -1,15 +1,12 @@
-
 import { applyTheme, DAYS, renderCardio, renderPlan, kgRange } from './ui.js';
 import { loadAll, saveState, saveOneRM, saveTheme, backup } from './storage.js';
 const $=id=>document.getElementById(id);
 let routines={}, defaults1RM={}, state, progress, oneRM, theme;
 let viewMode=(window.innerWidth<=900)?'cards':'table';
-let reg=null;
-const BUST = '1755573204';
 async function boot(){
   [routines, defaults1RM] = await Promise.all([
-    fetch('data/routines.json?v='+BUST).then(r=>r.json()),
-    fetch('data/defaults_1rm.json?v='+BUST).then(r=>r.json())
+    fetch('data/routines.json?v=1755574274').then(r=>r.json()),
+    fetch('data/defaults_1rm.json?v=1755574274').then(r=>r.json())
   ]);
   const loaded=loadAll({person:'fercho',day:'Lunes',week:1,notes:''});
   state=loaded.state; progress=loaded.progress; oneRM=loaded.oneRM||defaults1RM; theme=loaded.theme;
@@ -21,19 +18,16 @@ async function boot(){
   $('week').onchange=e=>{ state.week=Number(e.target.value); saveState(state); };
   $('btnExport').onclick=exportCSV; $('btnSettings').onclick=openSettings; $('btnClose').onclick=closeSettings;
   $('btnAdd1RM').onclick=addOneRM; $('btnReset1RM').onclick=resetOneRM;
-  $('btnBackup').onclick=()=>backup({version:'4.2-r5',state,progress,oneRM,theme});
+  $('btnBackup').onclick=()=>backup({version:'4.2-r6',state,progress,oneRM,theme});
   $('btnRestore').onclick=() => $('fileRestore').click();
   $('fileRestore').addEventListener('change',doRestore);
   $('btnView').onclick=toggleView;
   renderAll();
-  if ('serviceWorker' in navigator) {
-    reg = await navigator.serviceWorker.register('./sw.js?v='+BUST, { updateViaCache: 'none' });
-    setupSWUpdatePrompt(reg);
-  }
+  if ('serviceWorker' in navigator) { try { await navigator.serviceWorker.register('./sw.js'); } catch(e) { /* no-op */ } }
 }
 function renderAll(){ renderPlan(viewMode,routines,state,oneRM,progress); renderCardio();
   $('deficitText').textContent = state.person==='fercho' ? '−300 a −400 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie'
-                                                          : '−200 a −300 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie';
+                                                         : '−200 a −300 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie';
   $('notes').value=state.notes||''; $('notes').oninput=e=>{ state.notes=e.target.value; saveState(state); };
 }
 function exportCSV(){ const plan=routines[state.person][state.day]; const rows=[];
@@ -63,7 +57,7 @@ function addOneRM(){ const who=prompt('¿Para quién? (fercho/andy)','fercho'); 
   oneRM[who][name]=val; saveOneRM(oneRM); renderOneRMEditor(); renderPlan(viewMode,routines,state,oneRM,progress);
 }
 function resetOneRM(){ if(confirm('¿Restablecer 1RM a valores por defecto?')){
-  fetch('data/defaults_1rm.json?v='+BUST).then(r=>r.json()).then(def=>{ oneRM=def; saveOneRM(oneRM); renderOneRMEditor(); renderPlan(viewMode,routines,state,oneRM,progress); });
+  fetch('data/defaults_1rm.json?v=1755574274').then(r=>r.json()).then(def=>{ oneRM=def; saveOneRM(oneRM); renderOneRMEditor(); renderPlan(viewMode,routines,state,oneRM,progress); });
 } }
 function doRestore(evt){ const file=evt.target.files[0]; if(!file) return;
   const reader=new FileReader(); reader.onload=()=>{ try{ const data=JSON.parse(reader.result);
@@ -72,16 +66,4 @@ function doRestore(evt){ const file=evt.target.files[0]; if(!file) return;
     renderAll(); closeSettings(); alert('Respaldo restaurado.'); }catch{ alert('Archivo inválido.'); } }; reader.readAsText(file);
 }
 function toggleView(){ viewMode=(viewMode==='table')?'cards':'table'; $('btnView').textContent='Vista: '+(viewMode==='table'?'Tabla':'Tarjetas'); renderPlan(viewMode,routines,state,oneRM,progress); }
-function setupSWUpdatePrompt(reg){
-  const bar=$('updateBar'), btnR=$('btnRefresh'), btnL=$('btnDismiss');
-  function show(){ bar.hidden=false; } function hide(){ bar.hidden=true; }
-  function watch(w){ w && w.addEventListener('statechange',()=>{ if(w.state==='installed' && navigator.serviceWorker.controller) show(); }); }
-  if(reg.waiting && navigator.serviceWorker.controller) show();
-  watch(reg.installing); reg.addEventListener('updatefound',()=>watch(reg.installing));
-  navigator.serviceWorker.addEventListener('controllerchange',()=>window.location.reload());
-  btnR.onclick = async ()=>{ await reg.update(); const t=reg.waiting||reg.installing; if(t) t.postMessage({type:'SKIP_WAITING'});
-    setTimeout(()=>{ if(!bar.hidden) window.location.reload(); },2000); };
-  btnL.onclick = ()=> hide();
-  reg.update(); setInterval(()=>reg.update(), 30*60*1000);
-}
 boot();
