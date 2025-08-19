@@ -13,8 +13,8 @@
   <div class="wrap">
     <header class="row header">
       <div>
-        <h1>Hypertrophy Tracker <span class="pill">v4.1</span></h1>
-        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • Progresión S1–S4 • Editable 1RM • Backup/Restore</div>
+        <h1>Hypertrophy Tracker <span class="pill">v4.2</span></h1>
+        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • Progresión S1–S4 • Editable 1RM • Backup/Restore • Update prompt</div>
       </div>
       <div class="toolbar">
         <div><label>Persona</label><select id="person"><option value="fercho">Fercho</option><option value="andy">Andy</option></select></div>
@@ -58,41 +58,50 @@
       <h2>Domingo activo (sin glúteo)</h2>
       <div class="muted">LISS 35–45′ (caminadora pendiente o elíptica) + <b>core 8–12′</b> (Dead bug, Pallof press, plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
     </section>
+  </div>
 
-    <div class="modal" id="modal">
-      <div class="box">
-        <div class="modal-head">
-          <h2>Ajustes</h2>
-          <button id="btnClose" class="ghost">Cerrar</button>
+  <!-- Snackbar de actualización -->
+  <div id="updateBar" class="update-bar" hidden>
+    <span>Nueva versión disponible</span>
+    <button id="btnRefresh">Actualizar</button>
+    <button id="btnDismiss" class="ghost">Luego</button>
+  </div>
+
+  <!-- Modal Ajustes -->
+  <div class="modal" id="modal">
+    <div class="box">
+      <div class="modal-head">
+        <h2>Ajustes</h2>
+        <button id="btnClose" class="ghost">Cerrar</button>
+      </div>
+      <div class="hr"></div>
+      <div class="grid2">
+        <div>
+          <h3>1RM por persona</h3>
+          <div class="help">Edita tus 1RM. Se guardan en el dispositivo. Afecta los rangos de “Carga objetivo”.</div>
+          <div id="oneRmEditor" class="mt8"></div>
+          <div class="row-actions">
+            <button id="btnAdd1RM" class="ghost">Agregar ejercicio 1RM</button>
+            <button id="btnReset1RM" class="ghost">Restablecer a valores por defecto</button>
+          </div>
         </div>
-        <div class="hr"></div>
-        <div class="grid2">
-          <div>
-            <h3>1RM por persona</h3>
-            <div class="help">Edita tus 1RM. Se guardan en el dispositivo. Afecta los rangos de “Carga objetivo”.</div>
-            <div id="oneRmEditor" class="mt8"></div>
-            <div class="row-actions">
-              <button id="btnAdd1RM" class="ghost">Agregar ejercicio 1RM</button>
-              <button id="btnReset1RM" class="ghost">Restablecer a valores por defecto</button>
-            </div>
+        <div>
+          <h3>Respaldo</h3>
+          <div class="help">Descarga y carga un respaldo (.json) con 1RM, progresión y estado.</div>
+          <div class="row-actions">
+            <button id="btnBackup">Descargar respaldo</button>
+            <input type="file" id="fileRestore" accept=".json" style="display:none">
+            <button id="btnRestore" class="ghost">Restaurar desde archivo</button>
           </div>
-          <div>
-            <h3>Respaldo</h3>
-            <div class="help">Descarga y carga un respaldo (.json) con 1RM, progresión y estado.</div>
-            <div class="row-actions">
-              <button id="btnBackup">Descargar respaldo</button>
-              <input type="file" id="fileRestore" accept=".json" style="display:none">
-              <button id="btnRestore" class="ghost">Restaurar desde archivo</button>
-            </div>
-            <div class="hr"></div>
-            <div class="help">Migración automática: si existían datos guardados bajo “novia”, se trasladan a “andy”.</div>
-          </div>
+          <div class="hr"></div>
+          <div class="help">Migración automática: si existían datos guardados bajo “novia”, se trasladan a “andy”.</div>
         </div>
       </div>
     </div>
-
-    <footer class="muted foot-bottom">PWA v4.1: estructura separada, responsive real (cardio/mini-déficit sin overflow), “Andy” y migración de datos. Offline tras la primera carga.</footer>
   </div>
+
+  <footer class="muted foot-bottom">PWA v4.2: update prompt + auto-recarga al aceptar. Offline tras la primera carga.</footer>
+
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
