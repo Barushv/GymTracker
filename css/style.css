@@ -1,20 +1,23 @@
 :root{
   --bg:#0b0b0c; --card:#141416; --muted:#9aa0a6; --text:#e8eaed; --brand:#14b8a6; --line:#25262a;
 }
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+img,table{max-width:100%}
 .wrap{max-width:1100px;margin:0 auto;padding:16px}
 .row{display:grid;gap:12px}
 .header{grid-template-columns:2fr 1fr;align-items:end;gap:16px;margin-bottom:12px}
 @media(max-width:900px){.header{grid-template-columns:1fr}}
-.card{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.card{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 2px 20px rgba(0,0,0,.25);overflow:hidden}
 h1{font-size:clamp(22px,3vw,28px);margin:0 0 6px} h2{margin:0 0 8px;font-size:18px}
 label{font-size:12px;color:var(--muted)}
 select, textarea, input[type=text], input[type=number]{background:#0b0b0c;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}
 button{background:var(--brand);color:white;border:0;border-radius:10px;padding:8px 12px;font-weight:600;cursor:pointer}
 button.ghost{background:#24242a}
 .toolbar{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:8px}
-.toolbar-buttons{display:flex;gap:8px;align-items:end;justify-content:flex-end}
-@media(max-width:900px){.toolbar{grid-template-columns:1fr 1fr} .toolbar-buttons{justify-content:flex-start;flex-wrap:wrap}}
+.toolbar-buttons{display:flex;gap:8px;align-items:end;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:900px){.toolbar{grid-template-columns:1fr 1fr} .toolbar-buttons{justify-content:flex-start}}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th,td{padding:8px;border-top:1px solid var(--line);vertical-align:top}
 th{color:var(--muted);text-align:left}
@@ -27,6 +30,7 @@ th{color:var(--muted);text-align:left}
 .help{font-size:12px;color:var(--muted)} .mt8{margin-top:8px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px} @media(max-width:900px){.grid2{grid-template-columns:1fr}}
 .row-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tips{overflow-wrap:anywhere;word-break:break-word}
 
 /* Cards (mobile view) */
 .cards{display:grid;gap:10px}
@@ -38,10 +42,16 @@ th{color:var(--muted);text-align:left}
 .card-ex .row4 label{display:block;font-size:11px;color:var(--muted)}
 .card-ex input{width:100%}
 
+/* Cardio rows: stack on mobile; 4 cols on >=720px */
+.cardio-row{display:grid;grid-template-columns:80px 1fr;gap:8px;border-top:1px solid var(--line);padding:6px 0}
+.cardio-row>div{min-width:0}
+.cardio-row .mod,.cardio-row .note{overflow-wrap:anywhere;word-break:break-word}
+.cardio-row .dur,.cardio-row .note{color:var(--muted)}
+@media(min-width:720px){
+  .cardio-row{grid-template-columns:90px 1fr 140px 1fr}
+  .cardio-row .dur{justify-self:end}
+}
+
 /* Table visibility toggle (desktop default) */
-@media(min-width:901px){
-  .cards{display:none}
-}
-@media(max-width:900px){
-  .table-wrapper{display:none}
-}
+@media(min-width:901px){ .cards{display:none} }
+@media(max-width:900px){ .table-wrapper{display:none} }
