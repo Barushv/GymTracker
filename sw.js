@@ -1,4 +1,4 @@
-const CACHE='ht-sets-brand-v1-1';
+const CACHE='ht-sets-brand-v4';
 const PRECACHE=[ './','./index.html','./css/style.css','./js/app.js','./js/ui.js','./js/storage.js',
   './data/routines.json','./data/defaults_1rm.json','./app.webmanifest',
   './icons/icon-192.png','./icons/icon-512.png','./icons/icon-192-maskable.png','./icons/icon-512-maskable.png',
