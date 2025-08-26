@@ -5,16 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hypertrophy Tracker</title>
   <meta name="theme-color" content="#0B0B0C" id="themeColor">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="app.webmanifest">
   <link rel="icon" href="icons/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="wrap">
+  <!-- In-app Splash / Loading -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <img src="icons/icon-192.png" alt="HT" width="72" height="72">
+      <div class="title">Hypertrophy Tracker</div>
+      <div class="spinner" aria-label="Cargando"></div>
+      <div class="hint">Cargando rutina y datos…</div>
+    </div>
+  </div>
+
+  <div class="wrap" style="opacity:0" id="appRoot">
     <header class="row header">
       <div>
-        <h1>Hypertrophy Tracker <span class="pill">v4.3</span></h1>
-        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • <b>W1–W8</b> semanales • 1RM editable • Backup/Restore</div>
+        <h1>Hypertrophy Tracker <span class="pill">v4.5</span></h1>
+        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • <b>W1–W8</b> • Series por set • 1RM editable • Backup/Restore</div>
       </div>
       <div class="toolbar">
         <div><label>Persona</label><select id="person"><option value="fercho">Fercho</option><option value="andy">Andy</option></select></div>
@@ -37,7 +49,7 @@
 
     <section class="card">
       <div id="planContainer"></div>
-      <div class="foot">Los registros se guardan por semana (W1–W8). Cambia la semana arriba para editar sólo esa semana.</div>
+      <div class="foot">Cada ejercicio muestra <b>Series (kg + reps)</b> y calcula el <b>máximo kg</b> por semana (historial W1–W8).</div>
     </section>
 
     <section class="row">
@@ -65,40 +77,7 @@
     </section>
   </div>
 
-  <!-- Modal de Ajustes -->
-  <div class="modal" id="modal">
-    <div class="box">
-      <div class="modal-head">
-        <h2>Ajustes</h2>
-        <button id="btnClose" class="ghost">Cerrar</button>
-      </div>
-      <div class="hr"></div>
-      <div class="grid2">
-        <div>
-          <h3>1RM por persona</h3>
-          <div class="help">Edita tus 1RM (guardado en este dispositivo).</div>
-          <div id="oneRmEditor" class="mt8"></div>
-          <div class="row-actions">
-            <button id="btnAdd1RM" class="ghost">Agregar ejercicio 1RM</button>
-            <button id="btnReset1RM" class="ghost">Restablecer a valores por defecto</button>
-          </div>
-        </div>
-        <div>
-          <h3>Respaldo</h3>
-          <div class="help">Descarga/carga respaldo (.json) con 1RM, progresión y estado.</div>
-          <div class="row-actions">
-            <button id="btnBackup">Descargar respaldo</button>
-            <input type="file" id="fileRestore" accept=".json" style="display:none">
-            <button id="btnRestore" class="ghost">Restaurar desde archivo</button>
-          </div>
-          <div class="hr"></div>
-          <div class="help">Migraciones automáticas: “novia”→“andy” y S1–S4 → W1–W4.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer class="muted foot-bottom">PWA v4.3 (W1–W8; sin prompt de actualización)</footer>
+  <footer class="muted foot-bottom">PWA v4.5 (iconos nuevos + splash nativo & en-app)</footer>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
