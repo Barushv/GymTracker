@@ -9,5 +9,54 @@ export const DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 export const CARDIO=[['Lunes','Elíptica LISS Zona 2','20–25 min','RPE 5–6; 60–70% FCmáx'],['Martes','Caminadora HIIT','8–10× (30–40″ fuerte / 60–90″ suave)','RPE 8–9 tramos duros'],['Miércoles','Elíptica LISS (opc.)','15–20 min','Sólo si no afecta quads'],['Jueves','Caminadora LISS pendiente','25–35 min','6–8% / 4.5–5.5 km/h'],['Viernes','Elíptica LISS','15–20 min','Recuperación'],['Sábado','Escalera o elíptica LISS','20–30 min','RPE 5–6'],['Domingo','LISS 35–45′ + Core 8–12′','—','sin glúteo; dead bug, pallof, plancha']];
 export function round05(x){return Math.round(x*2)/2}
 export function kgRange(oneRM, person, load){ if(!load||load.auto) return 'Autoajuste'; const rm=oneRM[person]?.[load.key]; if(!rm) return 'Autoajuste'; return load.pct.map(([lo,hi],i)=>{const loKg=round05(rm*lo), hiKg=round05(rm*hi); return (i===0?'':'(top), ')+`${loKg}–${hiKg} kg`;}).join(' '); }
+
+function overview(p){ const ks=['W1','W2','W3','W4','W5','W6','W7','W8']; return ks.map(k=>p?.[k]||'').join(' | '); }
+
 export function renderCardio(){ const root=document.getElementById('cardioList'); root.innerHTML= CARDIO.map(([d,mod,dur,nota])=>`<div class="cardio-row"><div class="day"><b>${d}</b></div><div class="mod">${mod}</div><div class="dur">${dur}</div><div class="note">${nota}</div></div>`).join(''); }
-export function renderPlan(viewMode,routines,state,oneRM,progress){ const plan=routines[state.person][state.day]; const container=document.getElementById('planContainer'); if(viewMode==='table'){ container.innerHTML=`<div class="table-wrapper"><table id="planTable"><thead><tr><th>Ejercicio</th><th>Tipo</th><th>Esquema</th><th>Carga objetivo</th><th>Tempo</th><th>Descanso</th><th>RIR</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th></tr></thead><tbody></tbody></table></div>`; const tb=container.querySelector('tbody'); plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{ const p=(progress[state.person]?.[name])||{}; const tr=document.createElement('tr'); tr.innerHTML=`<td><b>${name}</b></td><td><span class="tag">${type}</span></td><td>${scheme}</td><td class="kg">${kgRange(oneRM,state.person,load)}</td><td>${tempo||'—'}</td><td>${rest||'—'}</td><td>${rir||'—'}</td>${[1,2,3,4].map(wk=>`<td><input data-ex="${name}" data-wk="S${wk}" value="${p['S'+wk]||''}" placeholder="kg/nota" style="width:95px"></td>`).join('')}`; tb.appendChild(tr); }); tb.querySelectorAll('input').forEach(inp=>{ inp.addEventListener('input',ev=>{ const ex=ev.target.dataset.ex, wk=ev.target.dataset.wk; progress[state.person]=progress[state.person]||{}; progress[state.person][ex]=progress[state.person][ex]||{}; progress[state.person][ex][wk]=ev.target.value; saveProgress(progress); });}); } else { const html=plan.map(([name,type,scheme,load,tempo,rest,rir])=>{ const p=(progress[state.person]?.[name])||{}; return `<div class="cards"><div class="card-ex"><h3>${name}</h3><div class="meta"><span class="tag">${type}</span><span>${scheme}</span><span class="kg">${kgRange(oneRM,state.person,load)}</span></div><div class="row4"><div><label>Tempo</label><div>${tempo||'—'}</div></div><div><label>Descanso</label><div>${rest||'—'}</div></div><div><label>RIR</label><div>${rir||'—'}</div></div><div><label>&nbsp;</label><div></div></div></div><div class="row4">${[1,2,3,4].map(wk=>`<div><label>S${wk}</label><input data-ex="${name}" data-wk="S${wk}" value="${p['S'+wk]||''}" placeholder="kg/nota"></div>`).join('')}</div></div></div>`; }).join(''); container.innerHTML=html; container.querySelectorAll('input').forEach(inp=>{ inp.addEventListener('input',ev=>{ const ex=ev.target.dataset.ex, wk=ev.target.dataset.wk; progress[state.person]=progress[state.person]||{}; progress[state.person][ex]=progress[state.person][ex]||{}; progress[state.person][ex][wk]=ev.target.value; saveProgress(progress); });}); } }
+export function renderPlan(viewMode,routines,state,oneRM,progress){
+  const plan=routines[state.person][state.day]; const wk=`W${state.week}`;
+  const container=document.getElementById('planContainer');
+  if(viewMode==='table'){
+    container.innerHTML=`<div class="table-wrapper"><table id="planTable">
+      <thead><tr><th>Ejercicio</th><th>Tipo</th><th>Esquema</th><th>Carga objetivo</th><th>Tempo</th><th>Descanso</th><th>RIR</th><th>${wk}</th><th class="muted">Historial W1–W8</th></tr></thead>
+      <tbody></tbody></table></div>`;
+    const tb=container.querySelector('tbody');
+    plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{
+      const p=(progress[state.person]?.[name])||{}; const val=p[wk]||'';
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><b>${name}</b></td><td><span class="tag">${type}</span></td><td>${scheme}</td>
+                    <td class="kg">${kgRange(oneRM,state.person,load)}</td><td>${tempo||'—'}</td><td>${rest||'—'}</td><td>${rir||'—'}</td>
+                    <td><input data-ex="${name}" data-wk="${wk}" value="${val}" placeholder="kg/nota" style="width:120px"></td>
+                    <td class="muted">${overview(p)}</td>`;
+      tb.appendChild(tr);
+    });
+    tb.querySelectorAll('input').forEach(inp=>{
+      inp.addEventListener('input',ev=>{
+        const ex=ev.target.dataset.ex, w=ev.target.dataset.wk;
+        progress[state.person]=progress[state.person]||{}; progress[state.person][ex]=progress[state.person][ex]||{};
+        progress[state.person][ex][w]=ev.target.value; saveProgress(progress);
+      });
+    });
+  } else {
+    const html=plan.map(([name,type,scheme,load,tempo,rest,rir])=>{
+      const p=(progress[state.person]?.[name])||{}; const val=p[wk]||'';
+      return `<div class="cards"><div class="card-ex">
+        <h3>${name}</h3>
+        <div class="meta"><span class="tag">${type}</span><span>${scheme}</span><span class="kg">${kgRange(oneRM,state.person,load)}</span></div>
+        <div class="row4"><div><label>Tempo</label><div>${tempo||'—'}</div></div>
+                         <div><label>Descanso</label><div>${rest||'—'}</div></div>
+                         <div><label>RIR</label><div>${rir||'—'}</div></div><div></div></div>
+        <div class="row4"><div><label>${wk}</label><input data-ex="${name}" data-wk="${wk}" value="${val}" placeholder="kg/nota"></div>
+                         <div class="help" style="grid-column:span 3"><b>Historial:</b> ${overview(p)}</div></div>
+      </div></div>`;
+    }).join('');
+    container.innerHTML=html;
+    container.querySelectorAll('input').forEach(inp=>{
+      inp.addEventListener('input',ev=>{
+        const ex=ev.target.dataset.ex, w=ev.target.dataset.wk;
+        progress[state.person]=progress[state.person]||{}; progress[state.person][ex]=progress[state.person][ex]||{};
+        progress[state.person][ex][w]=ev.target.value; saveProgress(progress);
+      });
+    });
+  }
+}

@@ -1,12 +1,12 @@
-import { applyTheme, DAYS, renderCardio, renderPlan, kgRange } from './ui.js';
+import { applyTheme, DAYS, renderCardio, renderPlan } from './ui.js';
 import { loadAll, saveState, saveOneRM, saveTheme, backup } from './storage.js';
 const $=id=>document.getElementById(id);
 let routines={}, defaults1RM={}, state, progress, oneRM, theme;
 let viewMode=(window.innerWidth<=900)?'cards':'table';
 async function boot(){
   [routines, defaults1RM] = await Promise.all([
-    fetch('data/routines.json?v=1755574274').then(r=>r.json()),
-    fetch('data/defaults_1rm.json?v=1755574274').then(r=>r.json())
+    fetch('data/routines.json?v=1756177488').then(r=>r.json()),
+    fetch('data/defaults_1rm.json?v=1756177488').then(r=>r.json())
   ]);
   const loaded=loadAll({person:'fercho',day:'Lunes',week:1,notes:''});
   state=loaded.state; progress=loaded.progress; oneRM=loaded.oneRM||defaults1RM; theme=loaded.theme;
@@ -15,27 +15,40 @@ async function boot(){
   $('theme').onchange=e=>{ theme=e.target.value; applyTheme(theme); saveTheme(theme); };
   $('person').onchange=e=>{ state.person=e.target.value; saveState(state); renderAll(); };
   $('day').onchange=e=>{ state.day=e.target.value; saveState(state); renderPlan(viewMode,routines,state,oneRM,progress); };
-  $('week').onchange=e=>{ state.week=Number(e.target.value); saveState(state); };
+  $('week').onchange=e=>{ state.week=Number(e.target.value); saveState(state); renderPlan(viewMode,routines,state,oneRM,progress); };
   $('btnExport').onclick=exportCSV; $('btnSettings').onclick=openSettings; $('btnClose').onclick=closeSettings;
   $('btnAdd1RM').onclick=addOneRM; $('btnReset1RM').onclick=resetOneRM;
-  $('btnBackup').onclick=()=>backup({version:'4.2-r6',state,progress,oneRM,theme});
+  $('btnBackup').onclick=()=>backup({version:'4.3',state,progress,oneRM,theme});
   $('btnRestore').onclick=() => $('fileRestore').click();
   $('fileRestore').addEventListener('change',doRestore);
   $('btnView').onclick=toggleView;
+
+  // Instalación PWA
+  const btnInstall = $('btnInstall'); let deferredInstallPrompt = null;
+  if (btnInstall) {
+    btnInstall.style.display = 'none';
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstallPrompt = e; btnInstall.style.display = 'inline-block'; });
+    window.addEventListener('appinstalled', () => { btnInstall.style.display = 'none'; deferredInstallPrompt = null; });
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    if (isStandalone) btnInstall.style.display = 'none';
+    btnInstall.onclick = async () => { try { if (deferredInstallPrompt) { deferredInstallPrompt.prompt(); await deferredInstallPrompt.userChoice; deferredInstallPrompt = null; btnInstall.style.display = 'none'; } else { alert('Para instalar: menú del navegador → “Instalar app” o “Añadir a pantalla de inicio”.'); } } catch {} };
+  }
+
   renderAll();
-  if ('serviceWorker' in navigator) { try { await navigator.serviceWorker.register('./sw.js'); } catch(e) { /* no-op */ } }
+  if ('serviceWorker' in navigator) { try { await navigator.serviceWorker.register('./sw.js'); } catch(e) { } }
 }
 function renderAll(){ renderPlan(viewMode,routines,state,oneRM,progress); renderCardio();
   $('deficitText').textContent = state.person==='fercho' ? '−300 a −400 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie'
                                                          : '−200 a −300 kcal en Mar/Jue/Sáb/Dom; mantenimiento Lun/Mié/Vie';
   $('notes').value=state.notes||''; $('notes').oninput=e=>{ state.notes=e.target.value; saveState(state); };
 }
-function exportCSV(){ const plan=routines[state.person][state.day]; const rows=[];
-  rows.push(['Persona',state.person]); rows.push(['Día',state.day]); rows.push(['Semana',state.week]); rows.push([]);
-  rows.push(['Ejercicio','Tipo','Esquema','Carga objetivo','Tempo','Descanso','RIR','S1','S2','S3','S4']);
+function exportCSV(){ const plan=routines[state.person][state.day]; const rows=[]; const headerWeeks=[...Array(8)].map((_,i)=>'W'+(i+1));
+  rows.push(['Persona',state.person]); rows.push(['Día',state.day]); rows.push(['Semana actual',state.week]); rows.push([]);
+  rows.push(['Ejercicio','Tipo','Esquema','Carga objetivo','Tempo','Descanso','RIR',...headerWeeks]);
   plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{ const p=(progress[state.person]?.[name])||{};
-    rows.push([name,type,scheme,kgRange(oneRM,state.person,load),tempo||'',rest||'',rir||'',p.S1||'',p.S2||'',p.S3||'',p.S4||'']); });
-  const csv=rows.map(r=>r.map(x=>`"${String(x).replaceAll('"','""')}"`).join(',')).join('\\n');
+    rows.push([name,type,scheme,'',tempo||'',rest||'',rir||'',...headerWeeks.map(k=>p[k]||'')]);
+  });
+  const csv=rows.map(r=>r.map(x=>`"${String(x).replaceAll('"','""')}"`).join(',')).join('\n');
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob);
   const a=document.createElement('a'); a.href=url; a.download=`rutina_${state.person}_${state.day}.csv`; a.click(); URL.revokeObjectURL(url);
 }
@@ -47,8 +60,7 @@ function renderOneRMEditor(){ const root=$('oneRmEditor'); root.innerHTML='';
     Object.keys(oneRM[person]).sort().forEach(k=>{ const wrap=document.createElement('div');
       wrap.innerHTML=`<label>${k}</label><input type="number" step="0.5" value="${oneRM[person][k]}" data-person="${person}" data-ex="${k}">`;
       list.appendChild(wrap); }); block.appendChild(list); root.appendChild(block); });
-  root.querySelectorAll('input[type=number]').forEach(inp=>{ inp.addEventListener('change',e=>{
-    const p=e.target.getAttribute('data-person'), ex=e.target.getAttribute('data-ex'), val=parseFloat(e.target.value);
+  root.querySelectorAll('input[type=number]').forEach(inp=>{ inp.addEventListener('change',e=>{ const p=e.target.getAttribute('data-person'), ex=e.target.getAttribute('data-ex'), val=parseFloat(e.target.value);
     if(isFinite(val)){ oneRM[p][ex]=val; saveOneRM(oneRM); renderPlan(viewMode,routines,state,oneRM,progress); } }); });
 }
 function addOneRM(){ const who=prompt('¿Para quién? (fercho/andy)','fercho'); if(!who||!oneRM[who]) return;
@@ -57,7 +69,7 @@ function addOneRM(){ const who=prompt('¿Para quién? (fercho/andy)','fercho'); 
   oneRM[who][name]=val; saveOneRM(oneRM); renderOneRMEditor(); renderPlan(viewMode,routines,state,oneRM,progress);
 }
 function resetOneRM(){ if(confirm('¿Restablecer 1RM a valores por defecto?')){
-  fetch('data/defaults_1rm.json?v=1755574274').then(r=>r.json()).then(def=>{ oneRM=def; saveOneRM(oneRM); renderOneRMEditor(); renderPlan(viewMode,routines,state,oneRM,progress); });
+  fetch('data/defaults_1rm.json?v=1756177488').then(r=>r.json()).then(def=>{ oneRM=def; saveOneRM(oneRM); renderOneRMEditor(); renderPlan(viewMode,routines,state,oneRM,progress); });
 } }
 function doRestore(evt){ const file=evt.target.files[0]; if(!file) return;
   const reader=new FileReader(); reader.onload=()=>{ try{ const data=JSON.parse(reader.result);

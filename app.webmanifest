@@ -6,7 +6,7 @@
   "display": "standalone",
   "background_color": "#0b0b0c",
   "theme_color": "#0b0b0c",
-  "description": "Rutinas Fercho & Andy con %1RM, RIR, TUT y progresión S1–S4. PWA offline con edición de 1RM, backup y CSV.",
+  "description": "Rutinas Fercho & Andy con %1RM, RIR, TUT y progreso por semana (W1–W8). PWA offline con edición de 1RM, backup y CSV.",
   "icons": [
     {
       "src": "icons/icon-192.png",
