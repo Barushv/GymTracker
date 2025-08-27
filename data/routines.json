@@ -6,7 +6,8 @@
         "Top + Back-off",
         "1×5–6 + 3×8",
         {
-          "auto": true
+          "auto": true,
+          "target": "141.5–147.0 kg (top), 124.5–129.5 kg (back-off)"
         },
         "1–0–1–2 (2 s pico)",
         "2–3 min",
@@ -17,7 +18,8 @@
         "Básico",
         "4×8",
         {
-          "auto": true
+          "auto": true,
+          "target": "18.0–20.0 kg"
         },
         "3–1–1–0",
         "2 min",
@@ -28,7 +30,8 @@
         "Accesorio",
         "3×10/lado",
         {
-          "auto": true
+          "auto": true,
+          "target": "12.5–14.5 kg"
         },
         "2–1–1–1",
         "90 s",
@@ -39,7 +42,8 @@
         "Accesorio (biserie si se combina)",
         "3×12–15 (+ myo-reps)",
         {
-          "auto": true
+          "auto": true,
+          "target": "73.0–84.0 kg"
         },
         "1 s pico",
         "60–90 s",
@@ -50,7 +54,8 @@
         "Básico",
         "5×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "61.0–69.0 kg"
         },
         "3–1–1–2 (pausas)",
         "90 s",
@@ -63,7 +68,8 @@
         "Básico",
         "4×6–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste a RIR1–2"
         },
         "2–1–1–0",
         "2–3 min",
@@ -74,7 +80,8 @@
         "Básico",
         "4×8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste a RIR1–2"
         },
         "—",
         "2 min",
@@ -85,7 +92,8 @@
         "Accesorio",
         "3×10/lado",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (pico 1 s)"
         },
         "—",
         "90 s",
@@ -96,7 +104,8 @@
         "Superserie (antag.)",
         "3×10 + 3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "3–1–1–1",
         "— / 90 s al final",
@@ -107,7 +116,8 @@
         "Accesorio",
         "3×15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "60–90 s",
@@ -118,7 +128,8 @@
         "Secundarios",
         "2×10 + 2×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Ligero"
         },
         "—",
         "60–90 s",
@@ -131,7 +142,8 @@
         "Básico",
         "5×5",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste @80% aprox (RIR1–2)"
         },
         "3–0–1–0",
         "2–3 min",
@@ -142,7 +154,8 @@
         "Básico",
         "4×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
         },
         "—",
         "2 min",
@@ -153,7 +166,8 @@
         "Accesorio",
         "3×12/lado",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -164,7 +178,8 @@
         "Accesorio",
         "3×12–15 + drop",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "60–90 s",
@@ -175,7 +190,8 @@
         "Accesorio",
         "4×12–15",
         {
-          "auto": true
+          "auto": true,
+          "target": "48.5–57.0 kg"
         },
         "pausa 2 s",
         "60–90 s",
@@ -188,7 +204,8 @@
         "Básico",
         "4×10/lado",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
         },
         "2–1–1–1",
         "2 min",
@@ -199,7 +216,8 @@
         "Básico",
         "4×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "2 min",
@@ -210,7 +228,8 @@
         "Accesorio",
         "3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -221,7 +240,8 @@
         "Triserie mixta",
         "3×10 + 3×12 + 3×10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s entre vueltas",
@@ -232,7 +252,8 @@
         "Secundarios",
         "2×8–10 + 2×15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Ligero"
         },
         "—",
         "60–90 s",
@@ -245,7 +266,8 @@
         "Volumen/TUT",
         "4×10",
         {
-          "auto": true
+          "auto": true,
+          "target": "121.0–129.5 kg"
         },
         "1–0–1–2 (2 s pico)",
         "2 min",
@@ -256,7 +278,8 @@
         "Básico",
         "3×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1–2)"
         },
         "3–0–1–0",
         "2 min",
@@ -267,7 +290,8 @@
         "Accesorio",
         "3×12–15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (pico 1 s)"
         },
         "—",
         "90 s",
@@ -278,7 +302,8 @@
         "Básico",
         "3×6–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "2 min",
@@ -289,7 +314,8 @@
         "Accesorio",
         "4×10–12 + rest-pause",
         {
-          "auto": true
+          "auto": true,
+          "target": "48.5–57.0 kg"
         },
         "—",
         "90 s",
@@ -302,7 +328,8 @@
         "Accesorio",
         "3×12 (+ drop)",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -313,7 +340,8 @@
         "Básico",
         "3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -324,7 +352,8 @@
         "Superserie (antag.)",
         "4×10 + 4×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "3–1–1–1",
         "— / 90 s al final",
@@ -335,7 +364,8 @@
         "Accesorio",
         "3×12–15 (myo-reps)",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "60–90 s",
@@ -346,7 +376,8 @@
         "Accesorio",
         "3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "60–90 s",
@@ -361,7 +392,8 @@
         "Top + Back-off",
         "1×5–6 + 3×8",
         {
-          "auto": true
+          "auto": true,
+          "target": "177.0–183.5 kg (top), 155.5–162.0 kg (back-off)"
         },
         "1–0–1–2 (2 s pico)",
         "2–3 min",
@@ -372,7 +404,8 @@
         "Básico",
         "4×6–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "27.0–29.5 kg"
         },
         "3–1–1–0",
         "2 min",
@@ -383,7 +416,8 @@
         "Accesorio",
         "3×8–10/lado",
         {
-          "auto": true
+          "auto": true,
+          "target": "17.0–19.5 kg"
         },
         "2–1–1–1",
         "90 s",
@@ -394,7 +428,8 @@
         "Accesorio (biserie si se combina)",
         "3×15 (myo-reps)",
         {
-          "auto": true
+          "auto": true,
+          "target": "96.5–111.5 kg"
         },
         "1 s pico",
         "60–90 s",
@@ -405,7 +440,8 @@
         "Básico",
         "5×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "90.5–102.5 kg"
         },
         "3–1–1–2 (pausas)",
         "90 s",
@@ -418,7 +454,8 @@
         "Básico",
         "4×6–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1–2)"
         },
         "3–0–1–0",
         "2–3 min",
@@ -429,7 +466,8 @@
         "Básico",
         "4×5–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
         },
         "—",
         "2 min",
@@ -440,7 +478,8 @@
         "Básico",
         "4×8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "2 min",
@@ -451,7 +490,8 @@
         "Básico",
         "3×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "2 min",
@@ -462,7 +502,8 @@
         "Superserie (antag.)",
         "3×10 + 3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "3–1–1–1",
         "— / 90 s al final",
@@ -473,7 +514,8 @@
         "Accesorio",
         "3×15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "60–90 s",
@@ -486,7 +528,8 @@
         "Básico",
         "5×5",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste @80% aprox (RIR1–2)"
         },
         "3–0–1–0",
         "2–3 min",
@@ -497,7 +540,8 @@
         "Básico",
         "4×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
         },
         "—",
         "2 min",
@@ -508,7 +552,8 @@
         "Básico",
         "3×6–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste @70–75%"
         },
         "—",
         "2 min",
@@ -519,7 +564,8 @@
         "Accesorio",
         "3×12–15 + drop",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "60–90 s",
@@ -530,7 +576,8 @@
         "Accesorio",
         "4×12–15",
         {
-          "auto": true
+          "auto": true,
+          "target": "72.0–84.5 kg"
         },
         "pausa 2 s",
         "60–90 s",
@@ -543,7 +590,8 @@
         "Básico",
         "4×6–8",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1–2)"
         },
         "—",
         "2–3 min",
@@ -554,7 +602,8 @@
         "Básico",
         "4×10/lado",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
         },
         "2–1–1–1",
         "2 min",
@@ -565,7 +614,8 @@
         "Básico",
         "3×10–12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -576,7 +626,8 @@
         "Triserie mixta",
         "3×8–10 + 3×10 + 3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s entre vueltas",
@@ -587,7 +638,8 @@
         "Accesorio",
         "2×15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Ligero"
         },
         "—",
         "60–90 s",
@@ -600,7 +652,8 @@
         "Volumen/TUT",
         "4×10",
         {
-          "auto": true
+          "auto": true,
+          "target": "151.0–162.0 kg"
         },
         "1–0–1–2 (2 s pico)",
         "2 min",
@@ -611,7 +664,8 @@
         "Básico",
         "3×8–10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (RIR1–2)"
         },
         "3–0–1–0",
         "2 min",
@@ -622,7 +676,8 @@
         "Accesorio",
         "3×12–15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (pico 1 s)"
         },
         "—",
         "90 s",
@@ -633,7 +688,8 @@
         "Básico",
         "3×10–12 + rest-pause",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -644,7 +700,8 @@
         "Accesorio",
         "4×10–12 + myo-reps",
         {
-          "auto": true
+          "auto": true,
+          "target": "72.0–84.5 kg"
         },
         "—",
         "90 s",
@@ -657,7 +714,8 @@
         "Básico",
         "3×10–12 (+ drop)",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -668,7 +726,8 @@
         "Accesorio",
         "3×12 (pico 1 s)",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -679,7 +738,8 @@
         "Accesorio",
         "3×12–15",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste (TUT 3–1–1–1)"
         },
         "3–1–1–1",
         "60–90 s",
@@ -690,7 +750,8 @@
         "Básico",
         "3×12",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "—",
         "90 s",
@@ -701,11 +762,12 @@
         "Superserie (antag.)",
         "4×10 + 4×10",
         {
-          "auto": true
+          "auto": true,
+          "target": "Autoajuste"
         },
         "— / 90 s al final",
         "RIR0–1",
-        "nan"
+        "RIR1–2"
       ]
     ]
   }
