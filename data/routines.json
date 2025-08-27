@@ -3,20 +3,10 @@
     "Lunes": [
       [
         "Hip Thrust",
-        "Básico",
-        "Top 1×5–6 + Back-off 3×8",
+        "Top + Back-off",
+        "1×5–6 + 3×8",
         {
-          "key": "Hip Thrust",
-          "pct": [
-            [
-              0.82,
-              0.85
-            ],
-            [
-              0.72,
-              0.75
-            ]
-          ]
+          "auto": true
         },
         "1–0–1–2 (2 s pico)",
         "2–3 min",
@@ -27,13 +17,7 @@
         "Básico",
         "4×8",
         {
-          "key": "Peso Rumano",
-          "pct": [
-            [
-              0.65,
-              0.72
-            ]
-          ]
+          "auto": true
         },
         "3–1–1–0",
         "2 min",
@@ -44,13 +28,7 @@
         "Accesorio",
         "3×10/lado",
         {
-          "key": "Búlgara (por mano)",
-          "pct": [
-            [
-              0.6,
-              0.7
-            ]
-          ]
+          "auto": true
         },
         "2–1–1–1",
         "90 s",
@@ -58,16 +36,10 @@
       ],
       [
         "Abducción Máquina",
-        "Accesorio",
-        "3×12–15 (+ myo)",
+        "Accesorio (biserie si se combina)",
+        "3×12–15 (+ myo-reps)",
         {
-          "key": "Abducción Máquina",
-          "pct": [
-            [
-              0.65,
-              0.75
-            ]
-          ]
+          "auto": true
         },
         "1 s pico",
         "60–90 s",
@@ -78,15 +50,9 @@
         "Básico",
         "5×8–10",
         {
-          "key": "Pantorrilla de pie",
-          "pct": [
-            [
-              0.75,
-              0.85
-            ]
-          ]
+          "auto": true
         },
-        "3–1–1–2",
+        "3–1–1–2 (pausas)",
         "90 s",
         "RIR1"
       ]
@@ -133,7 +99,7 @@
           "auto": true
         },
         "3–1–1–1",
-        "90 s al final",
+        "— / 90 s al final",
         "RIR0–1"
       ],
       [
@@ -209,13 +175,7 @@
         "Accesorio",
         "4×12–15",
         {
-          "key": "Pantorrilla de pie",
-          "pct": [
-            [
-              0.6,
-              0.7
-            ]
-          ]
+          "auto": true
         },
         "pausa 2 s",
         "60–90 s",
@@ -282,16 +242,10 @@
     "Viernes": [
       [
         "Hip Thrust",
-        "Básico",
-        "4×10 (TUT)",
+        "Volumen/TUT",
+        "4×10",
         {
-          "key": "Hip Thrust",
-          "pct": [
-            [
-              0.7,
-              0.75
-            ]
-          ]
+          "auto": true
         },
         "1–0–1–2 (2 s pico)",
         "2 min",
@@ -333,15 +287,9 @@
       [
         "Pantorrilla Donkey",
         "Accesorio",
-        "4×10–12 (+ rest-pause)",
+        "4×10–12 + rest-pause",
         {
-          "key": "Pantorrilla de pie",
-          "pct": [
-            [
-              0.6,
-              0.7
-            ]
-          ]
+          "auto": true
         },
         "—",
         "90 s",
@@ -379,13 +327,13 @@
           "auto": true
         },
         "3–1–1–1",
-        "90 s al final",
+        "— / 90 s al final",
         "RIR0–1"
       ],
       [
         "Curl cable barra recta",
         "Accesorio",
-        "3×12–15 (myo)",
+        "3×12–15 (myo-reps)",
         {
           "auto": true
         },
@@ -410,20 +358,10 @@
     "Lunes": [
       [
         "Hip Thrust",
-        "Básico",
-        "Top 1×5–6 + Back-off 3×8",
+        "Top + Back-off",
+        "1×5–6 + 3×8",
         {
-          "key": "Hip Thrust",
-          "pct": [
-            [
-              0.82,
-              0.85
-            ],
-            [
-              0.72,
-              0.75
-            ]
-          ]
+          "auto": true
         },
         "1–0–1–2 (2 s pico)",
         "2–3 min",
@@ -434,13 +372,7 @@
         "Básico",
         "4×6–8",
         {
-          "key": "Peso Rumano",
-          "pct": [
-            [
-              0.72,
-              0.78
-            ]
-          ]
+          "auto": true
         },
         "3–1–1–0",
         "2 min",
@@ -451,13 +383,7 @@
         "Accesorio",
         "3×8–10/lado",
         {
-          "key": "Búlgara (por mano)",
-          "pct": [
-            [
-              0.6,
-              0.7
-            ]
-          ]
+          "auto": true
         },
         "2–1–1–1",
         "90 s",
@@ -465,16 +391,10 @@
       ],
       [
         "Abducción Máquina",
-        "Accesorio",
-        "3×15 (myo)",
+        "Accesorio (biserie si se combina)",
+        "3×15 (myo-reps)",
         {
-          "key": "Abducción Máquina",
-          "pct": [
-            [
-              0.65,
-              0.75
-            ]
-          ]
+          "auto": true
         },
         "1 s pico",
         "60–90 s",
@@ -485,15 +405,9 @@
         "Básico",
         "5×8–10",
         {
-          "key": "Pantorrilla de pie",
-          "pct": [
-            [
-              0.75,
-              0.85
-            ]
-          ]
+          "auto": true
         },
-        "3–1–1–2",
+        "3–1–1–2 (pausas)",
         "90 s",
         "RIR1"
       ]
@@ -551,7 +465,7 @@
           "auto": true
         },
         "3–1–1–1",
-        "90 s al final",
+        "— / 90 s al final",
         "RIR0–1"
       ],
       [
@@ -616,13 +530,7 @@
         "Accesorio",
         "4×12–15",
         {
-          "key": "Pantorrilla de pie",
-          "pct": [
-            [
-              0.6,
-              0.7
-            ]
-          ]
+          "auto": true
         },
         "pausa 2 s",
         "60–90 s",
@@ -689,16 +597,10 @@
     "Viernes": [
       [
         "Hip Thrust",
-        "Básico",
-        "4×10 (TUT)",
+        "Volumen/TUT",
+        "4×10",
         {
-          "key": "Hip Thrust",
-          "pct": [
-            [
-              0.7,
-              0.75
-            ]
-          ]
+          "auto": true
         },
         "1–0–1–2 (2 s pico)",
         "2 min",
@@ -740,15 +642,9 @@
       [
         "Pantorrilla Donkey",
         "Accesorio",
-        "4×10–12 (+ myo)",
+        "4×10–12 + myo-reps",
         {
-          "key": "Pantorrilla de pie",
-          "pct": [
-            [
-              0.6,
-              0.7
-            ]
-          ]
+          "auto": true
         },
         "—",
         "90 s",
@@ -781,7 +677,7 @@
       [
         "Cruce poleas alto-bajo",
         "Accesorio",
-        "3×12–15 (TUT)",
+        "3×12–15",
         {
           "auto": true
         },
@@ -807,9 +703,9 @@
         {
           "auto": true
         },
-        "—",
-        "90 s al final",
-        "RIR0–1"
+        "— / 90 s al final",
+        "RIR0–1",
+        "nan"
       ]
     ]
   }

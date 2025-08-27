@@ -2,31 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hypertrophy Tracker</title>
-  <meta name="theme-color" content="#0B0B0C" id="themeColor">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="theme-color" content="#0B0B0C" id="themeColor">
+  <title>Hypertrophy Tracker</title>
   <link rel="manifest" href="app.webmanifest">
   <link rel="icon" href="icons/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- In-app Splash / Loading -->
-  <div id="splash" class="splash">
-    <div class="splash-inner">
-      <img src="icons/icon-192.png" alt="HT" width="72" height="72">
-      <div class="title">Hypertrophy Tracker</div>
-      <div class="spinner" aria-label="Cargando"></div>
-      <div class="hint">Cargando rutina y datos…</div>
-    </div>
-  </div>
-
-  <div class="wrap" style="opacity:0" id="appRoot">
+  <div class="wrap">
     <header class="row header">
       <div>
-        <h1>Hypertrophy Tracker <span class="pill">v4.5</span></h1>
-        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • <b>W1–W8</b> • Series por set • 1RM editable • Backup/Restore</div>
+        <h1>Hypertrophy Tracker <span class="pill">v4.6.2</span></h1>
+        <div class="muted">Fercho & Andy • %1RM / RIR / TUT • W1–W8 • Series por set • 1RM editable • Backup/Restore</div>
       </div>
       <div class="toolbar">
         <div><label>Persona</label><select id="person"><option value="fercho">Fercho</option><option value="andy">Andy</option></select></div>
@@ -42,42 +31,57 @@
           <button id="btnInstall">Instalar</button>
           <button id="btnExport">Exportar CSV</button>
           <button id="btnSettings" class="ghost">⚙️ Ajustes</button>
-          <button id="btnView" class="ghost">Vista: Tabla</button>
+          <button id="btnView" class="ghost">Ver tarjetas</button>
         </div>
       </div>
     </header>
 
     <section class="card">
       <div id="planContainer"></div>
-      <div class="foot">Cada ejercicio muestra <b>Series (kg + reps)</b> y calcula el <b>máximo kg</b> por semana (historial W1–W8).</div>
+      <div class="foot">En móvil usa <b>tarjetas</b>. Los sets son editables por semana y guardan en localStorage.</div>
     </section>
 
     <section class="row">
       <div class="card">
-        <h2>Cardio (oxidación de grasa)</h2>
+        <h2>Cardio</h2>
         <div id="cardioList"></div>
       </div>
       <div class="card">
-        <h2>Mini-déficit (sin afectar pierna)</h2>
+        <h2>Mini-déficit</h2>
         <div id="deficitText" class="muted"></div>
-        <ul class="muted tips">
-          <li>Proteína: 1.8–2.2 g/kg/día</li>
-          <li>Carbohidratos altos en pierna; moderados en upper y domingo</li>
-          <li>Grasas ≥ 0.6 g/kg; monoinsaturadas</li>
-          <li>Hidratación: 30–40 ml/kg (+500–1000 ml con HIIT/escalera)</li>
-        </ul>
-        <label style="margin-top:8px;display:block">Notas</label>
-        <textarea id="notes" rows="4" placeholder="Apunta aquí ajustes de comida, sueño, recuperación…"></textarea>
+        <textarea id="notes" rows="4" placeholder="Notas…"></textarea>
       </div>
     </section>
 
-    <section class="card" style="margin-top:12px">
-      <h2>Domingo activo (sin glúteo)</h2>
-      <div class="muted">LISS 35–45′ + <b>core 8–12′</b> (Dead bug, Pallof, plancha lateral). Opcional: escalera muy suave 10–15′ + movilidad.</div>
-    </section>
+    <!-- Modal Ajustes -->
+    <div class="modal" id="modal">
+      <div class="box">
+        <div class="modal-head">
+          <h2>Ajustes</h2><button id="btnClose" class="ghost">Cerrar</button>
+        </div>
+        <div class="hr"></div>
+        <div class="grid2">
+          <div>
+            <h3>1RM</h3>
+            <div id="oneRmEditor" class="mt8"></div>
+            <div class="row-actions">
+              <button id="btnAdd1RM" class="ghost">Agregar</button>
+              <button id="btnReset1RM" class="ghost">Restablecer</button>
+            </div>
+          </div>
+          <div>
+            <h3>Respaldo</h3>
+            <div class="row-actions">
+              <button id="btnBackup">Descargar</button>
+              <input type="file" id="fileRestore" accept=".json" style="display:none">
+              <button id="btnRestore" class="ghost">Restaurar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <footer class="muted foot-bottom">PWA v4.5 (iconos nuevos + splash nativo & en-app)</footer>
+  <footer class="muted foot-bottom">PWA v4.6.2 (responsive móvil + vista tarjetas)</footer>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
