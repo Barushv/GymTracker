@@ -1,5 +1,19 @@
 import { saveProgress } from './storage.js';
 export const DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+export const CARDIO=[
+  ['Lunes','Elíptica LISS Zona 2','20–25 min','RPE 5–6; 60–70% FCmáx'],
+  ['Martes','Caminadora HIIT','8–10× (30–40″ fuerte / 60–90″ suave)','RPE 8–9 tramos duros'],
+  ['Miércoles','Elíptica LISS (opc.)','15–20 min','Sólo si no afecta quads'],
+  ['Jueves','Caminadora LISS pendiente','25–35 min','6–8% / 4.5–5.5 km/h'],
+  ['Viernes','Elíptica LISS','15–20 min','Recuperación'],
+  ['Sábado','Escalera o elíptica LISS','20–30 min','RPE 5–6'],
+  ['Domingo','LISS 35–45′ + Core 8–12′','—','sin glúteo; dead bug, pallof, plancha']
+];
+
+export function renderCardio(){ const root=document.getElementById('cardioList'); if(!root) return;
+  root.innerHTML= CARDIO.map(([d,mod,dur,nota])=>`<div class="cardio-row"><div class="day"><b>${d}</b></div><div class="mod">${mod}</div><div class="dur">${dur}</div><div class="note">${nota}</div></div>`).join('');
+}
+
 export function ensurePath(progress, person, day, ex){ progress[person]=progress[person]||{}; progress[person][day]=progress[person][day]||{}; progress[person][day][ex]=progress[person][day][ex]||{}; return progress[person][day][ex]; }
 export function getWeek(progress, person, day, ex, wk, subIdx, setCount){
   const node=ensurePath(progress,person,day,ex); const key='W'+wk; node[key]=node[key]||{sub:[]};
@@ -30,43 +44,33 @@ function setsFor(name,scheme){ const subs=splitSubnames(name); const counts=pars
 export function renderPlan(viewMode,routines,state,oneRM,progress){
   const container=document.getElementById('planContainer'); if(!container) return;
   const plan=(routines[state.person]||{})[state.day]||[]; const wk=state.week;
-  if(viewMode==='cards'){
-    container.innerHTML='<div class="cards" id="cards"></div>'; const grid=container.querySelector('#cards');
-    plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{
-      const subnames=splitSubnames(name); const counts=setsFor(name,scheme); const target=(load&&load.target)?load.target:(load&&load.auto?'Autoajuste':'—');
-      const card=document.createElement('div'); card.className='card-ex';
-      const hdr=`<div class="head"><div><b>${name}</b> <span class="tag">${type}</span></div><div class="badge">${target}</div></div>`;
-      const meta=`<div class="meta">${chipL('Esq',scheme)}${chipL('Tempo',tempo)}${chipL('Desc',rest)}${chipL('RIR',rir)}</div>`;
-      const subwrap=document.createElement('div');
-      subnames.forEach((sub,si)=>{
-        const setCount=counts[Math.min(si,counts.length-1)];
-        const weekObj=getWeek(progress,state.person,state.day,name,wk,si,setCount);
-        let inner=`<div class="sub">${sub} • ${setCount}×</div>`;
-        for(let s=0;s<setCount;s++){ const kv=weekObj.sub[si][s]?.kg||''; const rv=weekObj.sub[si][s]?.reps||'';
-          inner+=`<div class="pair"><input type="number" step="0.5" placeholder="kg" data-ex="${name}" data-sub="${si}" data-set="${s}" data-wk="${wk}" value="${kv}">
-                             <input type="number" step="1" placeholder="reps" data-ex="${name}" data-sub="${si}" data-set="${s}" data-wk="${wk}" value="${rv}"></div>`;}
-        inner+=`<div class="hist">Máx W${wk}: <b>${maxKg(weekObj)||'—'}</b> • Historial: ${historyString(progress,state.person,state.day,name)}</div>`;
-        const section=document.createElement('div'); section.innerHTML=inner; subwrap.appendChild(section);
-      });
-      card.innerHTML=hdr+meta; card.appendChild(subwrap); grid.appendChild(card);
-    });
-    grid.querySelectorAll('input[type=number]').forEach(inp=>{
-      inp.addEventListener('input',ev=>{
-        const el=ev.target; const ex=el.dataset.ex; const sub=parseInt(el.dataset.sub,10); const set=parseInt(el.dataset.set,10); const wk=parseInt(el.dataset.wk,10);
-        const field=(el.placeholder==='kg')?'kg':'reps'; setCell(progress,state.person,state.day,ex,wk,sub,set,field,el.value);
-        const section=el.closest('.card-ex'); if(section){
-           section.querySelectorAll('.hist').forEach(h=>{ const max=maxKg(getWeek(progress,state.person,state.day,ex,wk,sub,set+1))||'—'; const hist=`Historial: ${historyString(progress,state.person,state.day,ex)}`; h.innerHTML=`Máx W${wk}: <b>${max}</b> • ${hist}`; });
-        }
-      });
-    });
-    return;
-  }
-  // simple table fallback
-  container.innerHTML='<div class="cards" id="cards"></div>'; const grid2=container.querySelector('#cards');
+  // cards only (mobile-first)
+  container.innerHTML='<div class="cards" id="cards"></div>'; const grid=container.querySelector('#cards');
   plan.forEach(([name,type,scheme,load,tempo,rest,rir])=>{
-    const target=(load&&load.target)?load.target:(load&&load.auto?'Autoajuste':'—');
-    const block=document.createElement('div'); block.className='card-ex';
-    block.innerHTML=`<div class="head"><div><b>${name}</b> <span class="tag">${type}</span></div><div class="badge">${target}</div></div><div class="meta">${chipL('Esq',scheme)}${chipL('Tempo',tempo)}${chipL('Desc',rest)}${chipL('RIR',rir)}</div>`;
-    grid2.appendChild(block);
+    const subnames=splitSubnames(name); const counts=setsFor(name,scheme); const target=(load&&load.target)?load.target:(load&&load.auto?'Autoajuste':'—');
+    const card=document.createElement('div'); card.className='card-ex';
+    const hdr=`<div class="head"><div><b>${name}</b> <span class="tag">${type}</span></div><div class="badge">${target}</div></div>`;
+    const meta=`<div class="meta">${chipL('Esq',scheme)}${chipL('Tempo',tempo)}${chipL('Desc',rest)}${chipL('RIR',rir)}</div>`;
+    const subwrap=document.createElement('div');
+    subnames.forEach((sub,si)=>{
+      const setCount=counts[Math.min(si,counts.length-1)];
+      const weekObj=getWeek(progress,state.person,state.day,name,wk,si,setCount);
+      let inner=`<div class="sub">${sub} • ${setCount}×</div>`;
+      for(let s=0;s<setCount;s++){ const kv=weekObj.sub[si][s]?.kg||''; const rv=weekObj.sub[si][s]?.reps||'';
+        inner+=`<div class="pair"><input type="number" step="0.5" placeholder="kg" data-ex="${name}" data-sub="${si}" data-set="${s}" data-wk="${wk}" value="${kv}">
+                           <input type="number" step="1" placeholder="reps" data-ex="${name}" data-sub="${si}" data-set="${s}" data-wk="${wk}" value="${rv}"></div>`;}
+      inner+=`<div class="hist">Máx W${wk}: <b>${maxKg(weekObj)||'—'}</b> • Historial: ${historyString(progress,state.person,state.day,name)}</div>`;
+      const section=document.createElement('div'); section.innerHTML=inner; subwrap.appendChild(section);
+    });
+    card.innerHTML=hdr+meta; card.appendChild(subwrap); grid.appendChild(card);
+  });
+  grid.querySelectorAll('input[type=number]').forEach(inp=>{
+    inp.addEventListener('input',ev=>{
+      const el=ev.target; const ex=el.dataset.ex; const sub=parseInt(el.dataset.sub,10); const set=parseInt(el.dataset.set,10); const wk=parseInt(el.dataset.wk,10);
+      const field=(el.placeholder==='kg')?'kg':'reps'; setCell(progress,state.person,state.day,ex,wk,sub,set,field,el.value);
+      const section=el.closest('.card-ex'); if(section){
+         section.querySelectorAll('.hist').forEach(h=>{ const max=maxKg(getWeek(progress,state.person,state.day,ex,wk,sub,set+1))||'—'; const hist=`Historial: ${historyString(progress,state.person,state.day,ex)}`; h.innerHTML=`Máx W${wk}: <b>${max}</b> • ${hist}`; });
+      }
+    });
   });
 }
