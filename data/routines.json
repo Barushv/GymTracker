@@ -770,5 +770,367 @@
         "RIR1–2"
       ]
     ]
+  },
+  "fercho_v2": {
+    "Lunes": [
+      [
+        "Hip Thrust",
+        "Básico (fuerza)",
+        "4×8",
+        {
+          "auto": true,
+          "target": "Autoajuste (RIR1-2)"
+        },
+        "1–0–1–2 (2 s pico)",
+        "2–3 min",
+        "RIR1-2"
+      ],
+      [
+        "Peso muerto rumano",
+        "Básico",
+        "4×8",
+        {
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
+        },
+        "3–1–1–0",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Curl femoral acostado",
+        "Accesorio",
+        "3×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "2–1–1–1",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Abducción (máquina o polea)",
+        "Accesorio",
+        "3×15",
+        {
+          "auto": true,
+          "target": "Autoajuste (pico 1 s)"
+        },
+        "—",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Glute bridge 1 pierna",
+        "Accesorio",
+        "2×12/lado",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "Técnico"
+      ]
+    ],
+    "Martes": [
+      [
+        "Press banca plano",
+        "Básico",
+        "4×10",
+        {
+          "auto": true,
+          "target": "Autoajuste (RIR1–2)"
+        },
+        "3–0–1–0",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Press inclinado mancuerna",
+        "Básico",
+        "4×10",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Pec deck / Aperturas",
+        "Accesorio",
+        "4×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ],
+      [
+        "Press cerrado + Fondos (paralelas)",
+        "Biserie",
+        "3×10 + 3×10",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "90 s al final",
+        "RIR0–1"
+      ],
+      [
+        "Extensión tríceps cuerda",
+        "Accesorio",
+        "3×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ]
+    ],
+    "Miércoles": [
+      [
+        "Sentadilla libre",
+        "Básico",
+        "4×8–10",
+        {
+          "auto": true,
+          "target": "Autoajuste (RIR1–2)"
+        },
+        "3–0–1–0",
+        "2–3 min",
+        "RIR1–2"
+      ],
+      [
+        "Prensa inclinada",
+        "Básico",
+        "4×12",
+        {
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Zancadas caminando",
+        "Accesorio",
+        "4×10/lado",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Extensión de pierna",
+        "Accesorio",
+        "3×15",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR0–1"
+      ],
+      [
+        "Pantorrilla de pie",
+        "Básico",
+        "3×15",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "pausa 2 s",
+        "60–90 s",
+        "RIR0–1"
+      ]
+    ],
+    "Jueves": [
+      [
+        "Remo con barra",
+        "Básico",
+        "4×10",
+        {
+          "auto": true,
+          "target": "Autoajuste (RIR1)"
+        },
+        "2–1–1–1",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Jalón al pecho neutro",
+        "Básico",
+        "4×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "2 min",
+        "RIR1–2"
+      ],
+      [
+        "Pullover en polea",
+        "Accesorio",
+        "3×15",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "90 s",
+        "RIR1"
+      ],
+      [
+        "Curl barra Z",
+        "Accesorio",
+        "3×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ],
+      [
+        "Curl martillo alternado",
+        "Accesorio",
+        "4×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ]
+    ],
+    "Viernes": [
+      [
+        "Hip Thrust (bombeo)",
+        "Volumen / TUT",
+        "4×15",
+        {
+          "auto": true,
+          "target": "Autoajuste (pico 2 s)"
+        },
+        "1–0–1–2",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Peso muerto rumano",
+        "Básico",
+        "3×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "3–1–1–0",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Patada trasera en polea (c/lado)",
+        "Accesorio",
+        "3×12/lado",
+        {
+          "auto": true,
+          "target": "Autoajuste (pico 1 s)"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ],
+      [
+        "Curl femoral + Abducción",
+        "Superserie",
+        "3×12 + 3×15",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "90 s al final",
+        "RIR0–1"
+      ],
+      [
+        "Sentadilla sumo",
+        "Accesorio",
+        "3×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ]
+    ],
+    "Sábado": [
+      [
+        "Press militar (barra)",
+        "Básico",
+        "4×10",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "2 min",
+        "RIR1"
+      ],
+      [
+        "Elevaciones laterales + frontales",
+        "Biserie",
+        "4×12 + 4×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "90 s al final",
+        "RIR1"
+      ],
+      [
+        "Posterior en máquina",
+        "Accesorio",
+        "4×15",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "RIR1"
+      ],
+      [
+        "Elevación Y mancuerna",
+        "Accesorio",
+        "4×12",
+        {
+          "auto": true,
+          "target": "Autoajuste"
+        },
+        "—",
+        "60–90 s",
+        "Técnico"
+      ]
+    ]
   }
 }

@@ -1,5 +1,5 @@
 
-const CACHE='ht-4-6-5';
+const CACHE='ht-v.4.7.0';
 const PRECACHE=[ './','./index.html','./css/style.css','./js/app.js','./js/ui.js','./js/storage.js',
   './data/routines.json','./app.webmanifest','./icons/icon-192.png','./icons/icon-512.png' ];
 self.addEventListener('install', e=>{ e.waitUntil(caches.open(CACHE).then(c=>c.addAll(PRECACHE))); });

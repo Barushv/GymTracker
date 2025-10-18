@@ -1,13 +1,13 @@
 import { saveProgress } from './storage.js';
 export const DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 export const CARDIO=[
-  ['Lunes','Elíptica LISS Zona 2','20–25 min','RPE 5–6; 60–70% FCmáx'],
-  ['Martes','Caminadora HIIT','8–10× (30–40″ fuerte / 60–90″ suave)','RPE 8–9 tramos duros'],
-  ['Miércoles','Elíptica LISS (opc.)','15–20 min','Sólo si no afecta quads'],
-  ['Jueves','Caminadora LISS pendiente','25–35 min','6–8% / 4.5–5.5 km/h'],
-  ['Viernes','Elíptica LISS','15–20 min','Recuperación'],
-  ['Sábado','Escalera o elíptica LISS','20–30 min','RPE 5–6'],
-  ['Domingo','LISS 35–45′ + Core 8–12′','—','sin glúteo; dead bug, pallof, plancha']
+  ['Lunes','LISS caminadora (pendiente)','15 min','RPE 5–6; 60–70% FCmáx'],
+  ['Martes','HIIT caminadora','10× (1′ rápido / 1′ suave)','RPE 8–9 en tramos duros'],
+  ['Miércoles','LISS bicicleta/elíptica','20 min','Ritmo medio; no fatigar cuádriceps'],
+  ['Jueves','HIIT (bicicleta/escaladora)','12–15 min','1:1 trabajo/recuperación'],
+  ['Viernes','LISS caminadora','20 min','Recuperación activa'],
+  ['Sábado','HIIT (escaladora/elíptica)','15 min','Bloque único'],
+  ['Domingo','LISS 40–45′ + Refuerzo opcional','—','Glute bridge ligero + movilidad']
 ];
 
 export function renderCardio(){ const root=document.getElementById('cardioList'); if(!root) return;
